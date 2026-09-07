@@ -1,9 +1,9 @@
 # Pot Culture — website
 
-A one-page site for Pot Culture: exotic plants grown in our own nursery
-(single or bulk), pots ready-made or made to order, and corporate gifting
-as the speciality. No installation, no build step, no dependencies — open
-`index.html` in a browser and it runs.
+A one-page site for Pot Culture: exotic plants sourced from a trusted
+nursery (single or bulk), pots ready-made or made to order, and corporate
+gifting as the speciality. No installation, no build step, no
+dependencies — open `index.html` in a browser and it runs.
 
 ```
 index.html               the page and all its text
