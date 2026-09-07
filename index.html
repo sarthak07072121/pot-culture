@@ -15,6 +15,9 @@
 <!-- EDIT #2 — social preview image. Drop a 1200x630 photo at this path. -->
 <meta property="og:image" content="assets/img/social.jpg">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪴</text></svg>">
 </head>
@@ -54,6 +57,7 @@
     </a>
 
     <nav class="nav" id="nav" aria-label="Main">
+      <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
       <a href="#shop">What we grow</a>
       <a href="#gallery">Gallery</a>
       <a href="#gifting">Gifting</a>
@@ -92,6 +96,30 @@
 
     <a class="scroll-cue" href="#shop" aria-label="Scroll down"><span></span></a>
   </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <!-- EDIT #4 — swap these for the varieties you actually stock. Duplicated
+       once in the markup so the scroll loop has no visible seam. -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Monstera</span><span class="dot">•</span>
+      <span>Snake Plant</span><span class="dot">•</span>
+      <span>ZZ Plant</span><span class="dot">•</span>
+      <span>Philodendron</span><span class="dot">•</span>
+      <span>Anthurium</span><span class="dot">•</span>
+      <span>Calathea</span><span class="dot">•</span>
+      <span>Pothos</span><span class="dot">•</span>
+      <span>Fiddle Leaf Fig</span><span class="dot">•</span>
+      <span>Monstera</span><span class="dot">•</span>
+      <span>Snake Plant</span><span class="dot">•</span>
+      <span>ZZ Plant</span><span class="dot">•</span>
+      <span>Philodendron</span><span class="dot">•</span>
+      <span>Anthurium</span><span class="dot">•</span>
+      <span>Calathea</span><span class="dot">•</span>
+      <span>Pothos</span><span class="dot">•</span>
+      <span>Fiddle Leaf Fig</span><span class="dot">•</span>
+    </div>
+  </div>
 
   <!-- ================= STATS ================= -->
   <section class="strip" data-bg="1">
@@ -314,12 +342,26 @@
           <textarea name="message" rows="5" required placeholder="What the plants are for, where they'll live, any branding you need."></textarea>
         </label>
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Send enquiry</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+          <span class="btn-label">Send enquiry</span>
+          <svg class="btn-check" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12.5 9.5 18 20 6"/>
+          </svg>
+        </button>
         <p class="form-note" id="formNote" role="status"></p>
       </form>
     </div>
   </section>
 </main>
+
+<!-- Sticky mobile enquiry bar — appears once you've scrolled past the hero,
+     hides once the real contact form is on screen. Gives phone visitors a
+     one-thumb way to reach the form at all times. -->
+<a class="mobile-cta" id="mobileCta" href="#contact">Enquire now</a>
+
+<!-- A small label that follows the cursor over the gallery. Desktop only —
+     hidden automatically on touch devices. -->
+<div class="cursor-chip" id="cursorChip" aria-hidden="true">View</div>
 
 <!-- ================= LIGHTBOX ================= -->
 <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">

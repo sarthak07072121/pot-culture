@@ -116,20 +116,35 @@ var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
   });
   nav.addEventListener("click", function (e) { if (e.target.tagName === "A") closeMenu(); });
 
-  /* ---------- active section in nav ---------- */
+  /* ---------- active section in nav, with a sliding underline ---------- */
   var links = $$('#nav a[href^="#"]:not(.nav-cta)');
   var sections = links.map(function (a) { return $(a.getAttribute("href")); }).filter(Boolean);
+  var indicator = $("#navIndicator");
+
+  var moveIndicator = function (link) {
+    if (!indicator || !link) return;
+    indicator.style.width = link.offsetWidth + "px";
+    indicator.style.transform = "translateX(" + link.offsetLeft + "px)";
+    indicator.classList.add("show");
+  };
+
   if ("IntersectionObserver" in window && sections.length) {
     var spy = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         links.forEach(function (a) {
-          a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id);
+          var isActive = a.getAttribute("href") === "#" + en.target.id;
+          a.classList.toggle("active", isActive);
+          if (isActive) moveIndicator(a);
         });
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { spy.observe(s); });
   }
+  window.addEventListener("resize", function () {
+    var active = links.filter(function (a) { return a.classList.contains("active"); })[0];
+    if (active) moveIndicator(active);
+  });
 
   /* ---------- reveal on scroll, with stagger ---------- */
   var reveals = $$(".reveal");
@@ -255,6 +270,62 @@ var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
     });
   }
 
+  /* ============================================================
+     MAGNETIC BUTTONS & CARD TILT
+     Subtle, disabled on touch devices and reduced-motion.
+     ============================================================ */
+  var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (canHover && !reduced) {
+    $$(".btn-primary, .btn-glass").forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.25;
+        var y = (e.clientY - r.top - r.height / 2) * 0.35;
+        btn.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+      });
+      btn.addEventListener("mouseleave", function () { btn.style.transform = ""; });
+    });
+
+    $$(".feature, .shot").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform =
+          "perspective(900px) rotateX(" + (py * -6).toFixed(2) + "deg) rotateY(" + (px * 8).toFixed(2) + "deg) translateY(-4px)";
+      });
+      card.addEventListener("mouseleave", function () { card.style.transform = ""; });
+    });
+
+    /* ---------- gallery cursor chip ---------- */
+    var chip = $("#cursorChip");
+    if (chip) {
+      $$(".shot").forEach(function (shot) {
+        shot.addEventListener("mouseenter", function () { chip.classList.add("show"); });
+        shot.addEventListener("mouseleave", function () { chip.classList.remove("show"); });
+        shot.addEventListener("mousemove", function (e) {
+          chip.style.left = e.clientX + "px";
+          chip.style.top = e.clientY + "px";
+        });
+      });
+    }
+  }
+
+  /* ---------- sticky mobile enquiry bar ---------- */
+  var mobileCta = $("#mobileCta");
+  var contactSection = $("#contact");
+  if (mobileCta) {
+    var updateMobileCta = function () {
+      var past = window.scrollY > window.innerHeight * 0.6;
+      var atContact = contactSection && contactSection.getBoundingClientRect().top < window.innerHeight * 0.7;
+      mobileCta.classList.toggle("show", past && !atContact);
+    };
+    updateMobileCta();
+    window.addEventListener("scroll", updateMobileCta, { passive: true });
+    window.addEventListener("resize", updateMobileCta);
+  }
+
   /* ---------- enquiry form ---------- */
   var form = $("#leadForm");
   if (!form) return;
@@ -302,5 +373,11 @@ var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
       "&body=" + encodeURIComponent(body);
 
     say("Opening your email app — press send there to finish.", "ok");
+
+    var sendBtn = $("button[type=submit]", form);
+    if (sendBtn) {
+      sendBtn.classList.add("sent");
+      setTimeout(function () { sendBtn.classList.remove("sent"); }, 2400);
+    }
   });
 })();

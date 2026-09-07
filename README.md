@@ -12,6 +12,22 @@ assets/img/              your photos go here (see the README in it)
 tools/make-images.sh     resizes your photos for the web
 ```
 
+## Interaction & feel
+
+- **Fraunces**, a serif display face, is loaded from Google Fonts for
+  headings — body text stays on Inter. This needs an internet connection to
+  render (it falls back to Georgia if it can't load, so nothing breaks
+  offline — it's just plainer).
+- A sliding underline follows the active nav link as you scroll (desktop).
+- Buttons lean gently toward your cursor; cards tilt slightly in 3D. Both
+  turn off automatically on touch devices and under reduced-motion.
+- A scrolling marquee of plant names sits under the hero — edit the list in
+  `index.html`, marked `EDIT #4`.
+- Hovering a gallery photo shows a "View" label that follows the cursor.
+- On phones, a sticky "Enquire now" bar appears once you scroll past the
+  hero and hides again once the real contact form is on screen.
+- Submitting the form morphs the button into a checkmark for a moment.
+
 ## The scrolling background
 
 The whole page sits on one fixed background that **crossfades as you scroll —

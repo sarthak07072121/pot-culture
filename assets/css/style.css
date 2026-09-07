@@ -21,6 +21,7 @@
   --shadow-lg: 0 26px 70px rgba(23,37,29,.16);
   --maxw: 1180px;
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
 
   --bg-fade: 1100ms;       /* how long the background crossfade takes */
 }
@@ -35,10 +36,10 @@ body{
 }
 body.ready{opacity:1}
 img{max-width:100%;display:block}
-h1,h2,h3,h4{line-height:1.13;letter-spacing:-.025em;margin:0 0 .5em;font-weight:700}
-h1{font-size:clamp(2.6rem,6.4vw,5rem);letter-spacing:-.04em}
-h2{font-size:clamp(1.9rem,3.8vw,2.9rem);letter-spacing:-.032em}
-h3{font-size:1.2rem}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.1;letter-spacing:-.01em;margin:0 0 .5em;font-weight:600}
+h1{font-size:clamp(2.7rem,6.6vw,5.2rem);font-weight:500;letter-spacing:-.015em}
+h2{font-size:clamp(1.95rem,3.9vw,3rem);font-weight:500}
+h3{font-size:1.28rem;font-family:var(--font)}
 p{margin:0 0 1rem}
 a{color:var(--brand);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -361,8 +362,85 @@ ul,ol{margin:0;padding:0;list-style:none}
   .bg-layer.on{opacity:1}
 }
 @media print{
-  .site-header,.burger,.bg-stage,.progress,.scroll-cue,.lightbox,.btn{display:none!important}
+  .site-header,.burger,.bg-stage,.progress,.scroll-cue,.lightbox,.btn,.marquee,.mobile-cta,.cursor-chip{display:none!important}
   body{font-size:12pt;color:#000;background:#fff;opacity:1}
   .card,.feature,.step,.faq details,.form{background:none;box-shadow:none;border-color:#ccc;backdrop-filter:none}
   .section{padding:16pt 0;break-inside:avoid}
+}
+
+/* ============================================================
+   INTERACTIVE POLISH
+   ============================================================ */
+
+/* ---------- sliding nav indicator ----------
+   Scoped to desktop only: on mobile .nav must keep the `position:fixed`
+   set in its own media query above so the off-canvas menu still works.
+   An unqualified `.nav{position:relative}` here would appear later in
+   the cascade and win at equal specificity, breaking that mobile rule. */
+@media (min-width:761px){ .nav{position:relative} }
+.nav-indicator{
+  position:absolute;left:0;bottom:-6px;height:2px;background:var(--brand);
+  border-radius:2px;opacity:0;transition:transform .35s cubic-bezier(.4,0,.2,1), width .35s cubic-bezier(.4,0,.2,1), opacity .2s;
+  pointer-events:none;
+}
+.nav-indicator.show{opacity:1}
+@media (max-width:760px){.nav-indicator{display:none}}
+
+/* ---------- marquee ---------- */
+.marquee{
+  position:relative;z-index:1;overflow:hidden;border-block:1px solid var(--line);
+  background:rgba(255,255,255,.60);backdrop-filter:blur(10px);padding:16px 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.marquee-track{
+  display:flex;width:max-content;gap:.6em;white-space:nowrap;
+  font-family:var(--font-display);font-size:1.15rem;color:var(--ink-soft);
+  animation:scroll-left 34s linear infinite;
+}
+.marquee-track span{padding-inline:.2em}
+.marquee-track .dot{color:var(--brand);font-family:var(--font)}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee:hover .marquee-track{animation-play-state:paused}
+
+/* ---------- magnetic buttons ---------- */
+.btn-primary,.btn-glass{will-change:transform}
+
+/* ---------- card tilt ---------- */
+.feature,.shot{transform-style:preserve-3d;will-change:transform}
+
+/* ---------- sticky mobile enquiry bar ---------- */
+.mobile-cta{
+  display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:150;
+  background:var(--brand);color:#fff;text-align:center;font-weight:700;
+  padding:15px;border-radius:999px;box-shadow:0 14px 34px -10px rgba(47,125,95,.55);
+  transform:translateY(140%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.mobile-cta:hover{color:#fff;text-decoration:none}
+.mobile-cta.show{transform:translateY(0)}
+@media (max-width:760px){.mobile-cta{display:block}}
+
+/* ---------- gallery cursor chip ---------- */
+.cursor-chip{
+  position:fixed;top:0;left:0;z-index:260;pointer-events:none;
+  background:var(--ink);color:#fff;font-size:.82rem;font-weight:600;
+  padding:.5em 1.1em;border-radius:999px;letter-spacing:.02em;
+  opacity:0;transform:translate(-50%,-50%) scale(.7);
+  transition:opacity .2s, transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.cursor-chip.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media (hover:none){.cursor-chip{display:none}}
+
+/* ---------- form submit success ---------- */
+.btn-block{position:relative;overflow:hidden}
+.btn-check{display:none}
+.btn-block.sent .btn-label{display:none}
+.btn-block.sent .btn-check{display:inline-flex}
+.btn-block.sent{background:var(--brand-dark)}
+
+/* ---------- reduced motion / touch guards ---------- */
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none}
+  .nav-indicator{transition:none}
+  .mobile-cta{transition:none}
 }
