@@ -1,76 +1,98 @@
 # Pot Culture — website
 
-A complete one-page website for Pot Culture: exotic and indoor plants,
-handmade pots, and corporate gifting. No installation, no build step, no
-dependencies — three files that any web browser can open.
+A one-page site for Pot Culture: exotic and indoor plants, handmade pots, and
+corporate gifting. No installation, no build step, no dependencies — open
+`index.html` in a browser and it runs.
 
 ```
-index.html              the page and all its text
-assets/css/style.css    colours, fonts, layout
-assets/js/main.js       menu, pricing toggle, contact form
-README.md               this file
+index.html               the page and all its text
+assets/css/style.css     colours, layout, all the motion
+assets/js/main.js        background transitions, gallery, form
+assets/img/              your photos go here (see the README in it)
+tools/make-images.sh     resizes your photos for the web
 ```
 
-## Look at it
+## The scrolling background
 
-Double-click `index.html`. That's it.
+The whole page sits on one fixed background that **crossfades as you scroll —
+in both directions**. Each section declares which background it wants:
+
+```html
+<section class="section" id="gallery" data-bg="2">
+```
+
+Whichever section owns the middle of your screen decides what's showing, so
+scrolling back up fades everything back in reverse. To change which photo a
+section uses, change its `data-bg` number. To change how slow the fade is,
+edit one line at the top of `style.css`:
+
+```css
+--bg-fade: 1100ms;
+```
+
+Everything is off automatically for visitors who have "reduce motion" turned
+on in their system settings.
+
+The site is a **light theme**. If your photos are dark or busy, the text over
+them may need more protection — raise the numbers in `.bg-scrim` in
+`style.css`. If your photos are pale, lower them to let more show through.
+
+## Photos
+
+**None are included** — the site ships with designed artwork in every photo
+slot, so it looks finished today and becomes photographic the moment you add
+files. See **[assets/img/README.md](assets/img/README.md)** for the exact
+filenames and sizes.
+
+Short version: shoot at 4K, but export to **2560px wide for backgrounds** and
+**1600px for everything else**. Putting raw 4K files on a website makes it
+take a minute to load on mobile data, and nobody can see the difference.
 
 ## Make it yours
 
-Every place you need to change is marked with a comment that says
-`EDIT #1`, `EDIT #2`, and so on. Search for the word `EDIT` in a file and
-you'll find them all. In order:
+Search `index.html` for `EDIT` — there are 10 numbered markers.
 
-| # | File | What to change |
-|---|------|----------------|
-| 1 | index.html | Page title and description — what Google shows. Add your city |
-| 2 | index.html | The headline |
-| 3 | index.html | Stats strip — real numbers, or delete the section |
-| 4 | index.html | The six things you sell |
-| 5 | index.html | **Gifting prices — currently `₹___`, must be filled in** |
-| 6 | index.html | Terms line under the prices (GST, delivery, minimums) |
-| 7 | index.html | Testimonials — **read the warning there** |
-| 8 | index.html | FAQ — answer these in your own words |
-| 9 | index.html | Footer: your email, phone, city |
-| 10 | assets/js/main.js | The email address enquiries go to |
-| — | assets/css/style.css | Your colours (see below) |
+| # | What to change |
+|---|----------------|
+| 1 | Page title and description — what Google shows |
+| 2 | Social preview image |
+| 3 | The headline |
+| 4 | Stats — put a number in `data-count` and it counts up on scroll |
+| 5 | The three things you sell |
+| 6 | Gallery photos and captions |
+| 7 | **Gifting prices — currently `₹___`** |
+| 8 | Terms line (GST, delivery, minimums) |
+| 9 | FAQ answers |
+| 10 | Footer: your email, phone, city |
+
+Plus `assets/js/main.js`, line 5: the email address enquiries go to.
 
 ### The two that matter most
 
-**Prices (`EDIT #5`).** The gifting cards show `₹___` on purpose. A blank is
-honest; an invented price is not. Put your real numbers in, or delete the
-`<p class="amount">` line from each card so people simply enquire.
+**Prices.** The gifting tiers read `₹___` on purpose. A blank is honest; an
+invented price is not. Put your real numbers in, or delete the
+`<em class="tier-price">` lines so people simply enquire.
 
-**Your email (`EDIT #9` and `#10`).** Both currently say
-`hello@example.com`. Until you change them, enquiries go nowhere.
+**Your email.** It says `hello@example.com` in two places. Until you change
+both, enquiries reach nobody.
 
-### Changing the colours
+### Colours
 
-Open `assets/css/style.css`. The first three lines are:
+The first lines of `style.css`:
 
 ```css
---brand:      #2f7d5f;   /* nursery green: buttons, links */
---brand-dark: #24634a;   /* darker shade for hover        */
---accent:     #7cb342;   /* leaf green for gradients      */
---clay:       #c07a4e;   /* terracotta accents            */
+--brand:  #2f7d5f;   /* green: buttons, links     */
+--accent: #6faa46;   /* leaf green for gradients  */
+--clay:   #c07a4e;   /* terracotta accents        */
 ```
-
-The pot and leaf colours in the hero illustration are separate
-(`--leaf-1`, `--leaf-2`, `--clay-1`, `--clay-2`) and have their own dark-mode
-values a few lines below.
-
-Replace the colour codes and the entire site updates — buttons, links,
-gradients, the illustration, everything.
 
 ## The contact form
 
-Right now the form opens the visitor's own email app with the enquiry
-pre-written. It works everywhere and costs nothing, but the visitor has to
-press send themselves — so some will drop off.
+It opens the visitor's email app with the enquiry pre-written — works
+everywhere, costs nothing, but they have to press send.
 
-**To have enquiries arrive in your inbox automatically**, sign up at
-[formspree.io](https://formspree.io) (free tier is fine), then in
-`index.html` change:
+To have enquiries land in your inbox automatically, sign up at
+[formspree.io](https://formspree.io) (free tier is fine) and change:
 
 ```html
 <form class="form card reveal" id="leadForm" novalidate>
@@ -82,42 +104,25 @@ to:
 <form class="form card reveal" id="leadForm" action="https://formspree.io/f/YOUR_ID" method="POST">
 ```
 
-and in `assets/js/main.js` delete the line `e.preventDefault();` inside the
-submit handler. The validation still runs; the form then posts to Formspree.
+then delete the `e.preventDefault();` line in `main.js`. Validation still runs.
 
 ## Putting it online
 
-You need two things: a **domain** (your address, ~₹900/year) and **hosting**
-(where the files live). For a site like this, hosting is free.
+Free, about a minute:
 
-The simplest route — drag and drop, no account juggling:
+1. **Settings → Pages** in this repository
+2. Source: **Deploy from a branch**, branch `main`, folder `/ (root)`
+3. Save. It goes live at `https://sarthak07072121.github.io/pot-culture/`
 
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop)
-2. Drag this whole folder onto the page
-3. It's live in about ten seconds on a free `.netlify.app` address
-4. Buy your domain and point it there in Netlify's settings
+Or drag this folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
 
-### Or with GitHub Pages (free, if this is on GitHub)
+## Before you launch
 
-1. Push this folder to a GitHub repository
-2. In the repository: **Settings → Pages**
-3. Under "Source" pick **Deploy from a branch**, branch `main`, folder `/ (root)`
-4. Save. About a minute later your site is live at
-   `https://<your-username>.github.io/<repo-name>/`
-
-`index.html` is at the top level of this folder, which is exactly what Pages
-expects — nothing to configure.
-
-Alternatives that work the same way: [Vercel](https://vercel.com) or
-[Cloudflare Pages](https://pages.cloudflare.com).
-
-## Before you launch — checklist
-
-- [ ] Every `EDIT #` marker dealt with
-- [ ] No `₹___` left anywhere (search the file for `___`)
-- [ ] No `example.com` left anywhere — email and phone are yours
-- [ ] Testimonials are real, or the section is deleted
+- [ ] Photos added, or you're happy with the artwork
+- [ ] No `₹___` left (search the file for `___`)
+- [ ] No `example.com` left — email and phone are yours
 - [ ] FAQ answers replaced with your real answers
 - [ ] Delivery cities and lead times are accurate
+- [ ] `alt="..."` text describes your actual photos
 - [ ] Contact form tested — send yourself one
 - [ ] Opened it on your own phone

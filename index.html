@@ -4,25 +4,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- ============================================================
-     EDIT #1 — SEO. This is what Google shows in search results.
-     Add your city to the title if you deliver locally, e.g.
-     "Pot Culture — Handmade pots & exotic plants in Pune"
-     ============================================================ -->
+<!-- EDIT #1 — SEO. Add your city if you deliver locally. -->
 <title>Pot Culture — Handmade pots, exotic plants &amp; corporate gifting</title>
-<meta name="description" content="Pot Culture grows exotic and indoor plants and makes pots by hand. Plants for your home, and thoughtful corporate gifting in bulk.">
-<meta name="theme-color" content="#2f7d5f">
+<meta name="description" content="Pot Culture grows exotic and indoor plants and throws every pot by hand. Plants for your home, and corporate gifting in bulk.">
+<meta name="theme-color" content="#fbfdfa">
 
 <meta property="og:title" content="Pot Culture — Handmade pots &amp; exotic plants">
 <meta property="og:description" content="Exotic and indoor plants in pots made by hand. Corporate gifting in bulk.">
 <meta property="og:type" content="website">
+<!-- EDIT #2 — social preview image. Drop a 1200x630 photo at this path. -->
+<meta property="og:image" content="assets/img/social.jpg">
 
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪴</text></svg>">
 </head>
 <body>
 
+<div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================================================
+     THE LIVING BACKGROUND
+     One fixed layer behind the whole page. As you scroll into each
+     section — up or down — the background crossfades to that
+     section's photo. Drop files at assets/img/bg-1.jpg … bg-5.jpg
+     (see assets/img/README.md). Until then each layer renders as
+     designed artwork, so nothing looks broken.
+     ============================================================ -->
+<div class="bg-stage" id="bgStage" aria-hidden="true">
+  <div class="bg-layer ph ph-a on"><img data-photo src="assets/img/bg-1.jpg" alt=""></div>
+  <div class="bg-layer ph ph-b"><img data-photo src="assets/img/bg-2.jpg" alt=""></div>
+  <div class="bg-layer ph ph-c"><img data-photo src="assets/img/bg-3.jpg" alt=""></div>
+  <div class="bg-layer ph ph-d"><img data-photo src="assets/img/bg-4.jpg" alt=""></div>
+  <div class="bg-layer ph ph-e"><img data-photo src="assets/img/bg-5.jpg" alt=""></div>
+  <div class="bg-scrim"></div>
+</div>
 
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="header">
@@ -39,8 +55,8 @@
 
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#shop">What we grow</a>
-      <a href="#gifting">Corporate gifting</a>
-      <a href="#how">How it works</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#gifting">Gifting</a>
       <a href="#faq">FAQ</a>
       <a class="btn btn-primary btn-sm nav-cta" href="#contact">Enquire</a>
     </nav>
@@ -53,82 +69,35 @@
 
 <main id="main">
 
-  <!-- ================= HERO ================= -->
-  <section class="hero" id="home">
+  <!-- ================= CINEMATIC HERO =================
+       Three photos crossfade with a slow drift. Drop files at
+       assets/img/hero-1.jpg, hero-2.jpg, hero-3.jpg — see
+       assets/img/README.md for sizes. Until then you get artwork.
+       ================================================== -->
+  <section class="hero" id="home" data-bg="0">
     <div class="wrap hero-inner">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Grown and thrown by hand</p>
-        <!-- EDIT #2 — your headline. Add your city if you deliver locally. -->
-        <h1>Rare plants in<br><span class="grad">pots made by hand</span></h1>
-        <p class="lede">
-          We grow exotic and indoor plants, and throw every pot ourselves —
-          so no two are quite alike. For your home, and for gifting your
-          team and clients something that stays alive.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#contact">Enquire now</a>
-          <a class="btn btn-ghost btn-lg" href="#gifting">Corporate gifting</a>
-        </div>
-        <ul class="hero-points">
-          <li>Handmade pots</li>
-          <li>Exotic varieties</li>
-          <li>Bulk gifting</li>
-        </ul>
-      </div>
-
-      <div class="hero-visual reveal" aria-hidden="true">
-        <svg class="plant-art" viewBox="0 0 440 420" role="img">
-          <defs>
-            <linearGradient id="leafA" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="var(--leaf-1)"/><stop offset="100%" stop-color="var(--leaf-2)"/>
-            </linearGradient>
-            <linearGradient id="clayA" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="var(--clay-1)"/><stop offset="100%" stop-color="var(--clay-2)"/>
-            </linearGradient>
-          </defs>
-
-          <circle class="art-bg" cx="220" cy="200" r="180"/>
-
-          <!-- back plant, small pot -->
-          <g class="art-sway art-sway-slow">
-            <path d="M348 300c0-42 8-70 30-88-6 40-12 66-30 88Z" fill="url(#leafA)" opacity=".75"/>
-            <path d="M348 300c-2-38-12-62-34-76 4 34 14 58 34 76Z" fill="url(#leafA)" opacity=".6"/>
-          </g>
-          <path d="M322 296h58l-8 62a10 10 0 0 1-10 9h-22a10 10 0 0 1-10-9Z" fill="url(#clayA)"/>
-          <rect x="316" y="288" width="70" height="16" rx="6" fill="url(#clayA)"/>
-
-          <!-- main plant -->
-          <g class="art-sway">
-            <path d="M220 268c-4-58 14-100 56-124-8 60-24 98-56 124Z" fill="url(#leafA)"/>
-            <path d="M220 268c-30-30-42-72-34-124 34 34 44 76 34 124Z" fill="url(#leafA)" opacity=".82"/>
-            <path d="M220 268c22-40 58-60 106-58-34 34-70 52-106 58Z" fill="url(#leafA)" opacity=".65"/>
-            <path d="M220 268c-42-8-72-32-90-70 44 8 74 30 90 70Z" fill="url(#leafA)" opacity=".55"/>
-            <path d="M220 272V196" stroke="var(--leaf-2)" stroke-width="6" stroke-linecap="round" fill="none"/>
-          </g>
-          <path d="M158 268h124l-14 96a14 14 0 0 1-14 12h-68a14 14 0 0 1-14-12Z" fill="url(#clayA)"/>
-          <rect x="150" y="256" width="140" height="24" rx="9" fill="url(#clayA)"/>
-          <path d="M176 300h88" stroke="var(--clay-line)" stroke-width="4" stroke-linecap="round" opacity=".45"/>
-
-          <!-- tiny cutting -->
-          <g class="art-sway art-sway-slow">
-            <path d="M96 332c0-26 6-44 20-56-4 26-8 42-20 56Z" fill="url(#leafA)" opacity=".7"/>
-          </g>
-          <path d="M78 330h40l-6 42a8 8 0 0 1-8 7h-12a8 8 0 0 1-8-7Z" fill="url(#clayA)"/>
-          <rect x="73" y="323" width="50" height="13" rx="5" fill="url(#clayA)"/>
-
-          <ellipse class="art-shade" cx="220" cy="384" rx="150" ry="13"/>
-        </svg>
-        <div class="blob blob-a"></div>
-        <div class="blob blob-b"></div>
+      <p class="eyebrow light">Grown and thrown by hand</p>
+      <!-- EDIT #3 — your headline -->
+      <h1>Rare plants in<br><span class="grad">pots made by hand</span></h1>
+      <p class="lede">
+        We grow exotic and indoor plants, and throw every pot ourselves.
+        No two are alike — for your home, and for gifting your team
+        something that stays alive.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="#contact">Enquire now</a>
+        <a class="btn btn-glass btn-lg" href="#gallery">See the work</a>
       </div>
     </div>
+
+    <a class="scroll-cue" href="#shop" aria-label="Scroll down"><span></span></a>
   </section>
 
   <!-- ================= STATS ================= -->
-  <section class="strip">
+  <section class="strip" data-bg="1">
     <div class="wrap strip-inner">
-      <!-- EDIT #3 — put your real numbers here, or delete this whole
-           <section>. Don't invent figures you can't stand behind. -->
+      <!-- EDIT #4 — put a number in data-count and it counts up on scroll.
+           Leave the "—" and delete data-count if you'd rather not say. -->
       <div class="stat"><b>—</b><span>Plant varieties</span></div>
       <div class="stat"><b>—</b><span>Pots thrown by hand</span></div>
       <div class="stat"><b>—</b><span>Corporate orders</span></div>
@@ -137,7 +106,7 @@
   </section>
 
   <!-- ================= WHAT WE GROW ================= -->
-  <section class="section" id="shop">
+  <section class="section" id="shop" data-bg="1">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">What we grow &amp; make</p>
@@ -145,124 +114,118 @@
         <p class="sub">Everything is grown or made by us — nothing bought in and re-labelled.</p>
       </div>
 
-      <div class="grid grid-3">
-        <!-- EDIT #4 — adjust these to exactly what you sell. -->
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">🪴</div>
+      <!-- EDIT #5 — the three things you most want to sell. Photos go at
+           assets/img/grow-1.jpg, grow-2.jpg, grow-3.jpg -->
+      <div class="grid grid-3 editorial">
+        <article class="feature reveal">
+          <div class="ph ph-a frame"><img data-photo src="assets/img/grow-1.jpg" alt="Indoor plants in handmade pots"></div>
           <h3>Indoor plants</h3>
-          <p>Easy, forgiving greenery for homes and desks — pothos, snake plants, philodendrons and more.</p>
+          <p>Forgiving greenery for homes and desks — pothos, snake plants, philodendrons.</p>
         </article>
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">🌿</div>
+        <article class="feature reveal">
+          <div class="ph ph-b frame"><img data-photo src="assets/img/grow-2.jpg" alt="Exotic and rare plant varieties"></div>
           <h3>Exotic &amp; rare varieties</h3>
           <p>Uncommon plants for collectors, grown in our own nursery rather than shipped in.</p>
         </article>
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">🏺</div>
+        <article class="feature reveal">
+          <div class="ph ph-c frame"><img data-photo src="assets/img/grow-3.jpg" alt="Handmade ceramic pots"></div>
           <h3>Handmade pots</h3>
-          <p>Thrown and glazed by hand. Small variations are the point — every piece is one of one.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">🎁</div>
-          <h3>Corporate gifting</h3>
-          <p>Bulk orders for teams, clients and events, with your branding on the pot or the tag.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">💧</div>
-          <h3>Care that continues</h3>
-          <p>Every plant leaves with a care card, and you can message us whenever something looks wrong.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon" aria-hidden="true">✎</div>
-          <h3>Custom orders</h3>
-          <p>A particular size, colour or glaze to match a space? Tell us and we'll make it.</p>
+          <p>Thrown and glazed by hand. The small variations are the point — each is one of one.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ================= CORPORATE GIFTING ================= -->
-  <section class="section section-alt" id="gifting">
+  <!-- ================= GALLERY ================= -->
+  <section class="section" id="gallery" data-bg="2">
     <div class="wrap">
       <div class="section-head reveal">
+        <p class="eyebrow">The work</p>
+        <h2>Every pot, one of one</h2>
+        <p class="sub">Click any photo to open it full size.</p>
+      </div>
+
+      <!-- EDIT #6 — your gallery. Photos at assets/img/shot-1.jpg … shot-6.jpg
+           Write a real caption for each — captions show in the lightbox. -->
+      <div class="gallery">
+        <figure class="shot ph ph-a tall reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-1.jpg" alt="A handmade pot, freshly glazed">
+          <figcaption>Speckled stoneware, matte glaze</figcaption>
+        </figure>
+        <figure class="shot ph ph-b reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-2.jpg" alt="Exotic plant close up">
+          <figcaption>Variegated monstera</figcaption>
+        </figure>
+        <figure class="shot ph ph-c reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-3.jpg" alt="Pots drying on the shelf">
+          <figcaption>Drying before the first firing</figcaption>
+        </figure>
+        <figure class="shot ph ph-b wide reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-4.jpg" alt="A corporate gifting set">
+          <figcaption>Gifting set, branded tags</figcaption>
+        </figure>
+        <figure class="shot ph ph-c reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-5.jpg" alt="Plants on a windowsill">
+          <figcaption>Morning light, west window</figcaption>
+        </figure>
+        <figure class="shot ph ph-a reveal" tabindex="0" role="button" aria-label="Open photo">
+          <img data-photo src="assets/img/shot-6.jpg" alt="Hands shaping a pot on the wheel">
+          <figcaption>On the wheel</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GIFTING (parallax split) ================= -->
+  <section class="section split" id="gifting" data-bg="3">
+    <div class="wrap split-inner">
+      <div class="split-media reveal">
+        <div class="ph ph-b frame tall-media">
+          <img data-photo data-parallax="34" src="assets/img/gifting.jpg" alt="Branded plant gifts packed for a corporate order">
+        </div>
+      </div>
+      <div class="split-copy reveal">
         <p class="eyebrow">For businesses</p>
         <h2>Corporate gifts that don't end up in a drawer</h2>
         <p class="sub">
           Onboarding kits, Diwali hampers, client thank-yous, event giveaways.
           A living plant in a handmade pot outlasts a mug or a diary.
         </p>
+
+        <!-- EDIT #7 — YOUR PRICES. These read ₹___ on purpose: a blank is
+             honest, an invented price is not. Fill them in, or delete the
+             .tier-price lines so people simply enquire. -->
+        <ul class="tiers">
+          <li>
+            <div><b>Desk gift</b><span>Small plant, handmade pot, gift box, care card</span></div>
+            <em class="tier-price">₹___</em>
+          </li>
+          <li class="best">
+            <div><b>Signature</b><span>Larger or exotic plant, your logo on the pot</span></div>
+            <em class="tier-price">₹___</em>
+          </li>
+          <li>
+            <div><b>Bespoke</b><span>Custom glaze, curated mix, event logistics</span></div>
+            <em class="tier-price">Let's talk</em>
+          </li>
+        </ul>
+        <p class="fineprint">
+          <!-- EDIT #8 — your real terms -->
+          Prices exclude GST and delivery. Minimums and lead times depend on quantity — ask us.
+        </p>
+        <a class="btn btn-primary btn-lg" href="#contact">Request gifting rates</a>
       </div>
-
-      <!-- EDIT #5 — YOUR PRICES.
-           These read ₹___ on purpose. Publishing a made-up price is worse
-           than publishing a blank. Fill in your real numbers, or delete the
-           .amount line from each card and let people enquire instead. -->
-      <div class="toggle reveal">
-        <span class="toggle-label is-on" id="lblM">Per gift</span>
-        <button class="switch" id="billing" role="switch" aria-checked="false" aria-label="Switch between per-gift and bulk pricing">
-          <span class="knob"></span>
-        </button>
-        <span class="toggle-label" id="lblY">Bulk <em>50+ units</em></span>
-      </div>
-
-      <div class="grid grid-3 pricing-grid">
-        <article class="card price reveal">
-          <h3>Desk gift</h3>
-          <p class="price-desc">A small plant in a handmade pot, boxed with a care card.</p>
-          <p class="amount"><span class="cur">₹</span><b data-m="___" data-y="___">___</b><span class="per" data-m="per gift" data-y="per gift, 50+">per gift</span></p>
-          <ul class="ticks">
-            <li>Succulent or small indoor plant</li>
-            <li>Handmade pot</li>
-            <li>Gift box &amp; care card</li>
-            <li>Printed message tag</li>
-          </ul>
-          <a class="btn btn-ghost btn-block" href="#contact">Enquire</a>
-        </article>
-
-        <article class="card price featured reveal">
-          <span class="badge">Most ordered</span>
-          <h3>Signature</h3>
-          <p class="price-desc">A statement plant with your logo on the pot.</p>
-          <p class="amount"><span class="cur">₹</span><b data-m="___" data-y="___">___</b><span class="per" data-m="per gift" data-y="per gift, 50+">per gift</span></p>
-          <ul class="ticks">
-            <li>Larger or exotic plant</li>
-            <li>Your branding on the pot</li>
-            <li>Premium packaging</li>
-            <li>Delivered to one address or many</li>
-            <li>Care support for recipients</li>
-          </ul>
-          <a class="btn btn-primary btn-block" href="#contact">Enquire</a>
-        </article>
-
-        <article class="card price reveal">
-          <h3>Bespoke</h3>
-          <p class="price-desc">Large events, custom glazes, or a curated mix.</p>
-          <p class="amount let">Let's talk</p>
-          <ul class="ticks">
-            <li>Custom pot shape &amp; glaze</li>
-            <li>Curated plant selection</li>
-            <li>Event and bulk logistics</li>
-            <li>Priority timelines</li>
-          </ul>
-          <a class="btn btn-ghost btn-block" href="#contact">Get a quote</a>
-        </article>
-      </div>
-      <p class="fineprint">
-        <!-- EDIT #6 — your real terms. Delete anything that isn't true. -->
-        Prices exclude GST and delivery. Minimum order and lead time depend on quantity — ask us.
-      </p>
     </div>
   </section>
 
   <!-- ================= HOW IT WORKS ================= -->
-  <section class="section" id="how">
+  <section class="section" id="how" data-bg="3">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Ordering</p>
         <h2>How it works</h2>
-        <p class="sub">Same for one plant or five hundred.</p>
+        <p class="sub">The same for one plant or five hundred.</p>
       </div>
-
       <ol class="steps">
         <li class="step reveal">
           <span class="step-num">1</span>
@@ -277,67 +240,32 @@
         <li class="step reveal">
           <span class="step-num">3</span>
           <h3>Delivered, alive</h3>
-          <p>Packed so it survives the journey, with a care card. Message us any time if a plant looks unhappy.</p>
+          <p>Packed to survive the journey, with a care card. Message us any time a plant looks unhappy.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ================= TESTIMONIALS ================= -->
-  <section class="section section-alt" id="testimonials">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Kind words</p>
-        <h2>What customers say</h2>
-      </div>
-
-      <!-- ============================================================
-           EDIT #7 — DELIBERATELY EMPTY. Only paste a quote here once a
-           real customer has actually said it, with their real name and
-           permission. Invented reviews are illegal advertising in India
-           under the CCPA 2019 guidelines and can be fined.
-           No real quotes yet? DELETE this whole <section> and remove the
-           "Kind words" content — the page reads fine without it.
-           ============================================================ -->
-      <div class="grid grid-3">
-        <figure class="card quote reveal">
-          <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
-        </figure>
-        <figure class="card quote reveal">
-          <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
-        </figure>
-        <figure class="card quote reveal">
-          <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= FAQ ================= -->
-  <section class="section" id="faq">
+  <section class="section" id="faq" data-bg="4">
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
         <p class="eyebrow">Questions</p>
         <h2>Before you order</h2>
       </div>
-
-      <!-- EDIT #8 — replace with the questions customers actually ask you,
-           and answer them the way you'd answer on the phone. -->
+      <!-- EDIT #9 — answer these the way you'd answer on the phone. -->
       <div class="faq reveal">
         <details>
           <summary>Do you deliver, and where?</summary>
-          <p>Add the cities you deliver to here, and what delivery costs. If you only do local delivery or pickup, say that plainly — people would rather know now.</p>
+          <p>List the cities you deliver to and what it costs. If it's local delivery or pickup only, say so plainly — people would rather know now.</p>
         </details>
         <details>
           <summary>What if the plant arrives damaged?</summary>
-          <p>State your actual replacement policy. Plants get knocked about in transit, and a clear promise here removes the main reason people hesitate.</p>
+          <p>State your real replacement policy. A clear promise here removes the main reason people hesitate to buy plants online.</p>
         </details>
         <details>
           <summary>Can you put our logo on the pots?</summary>
-          <p>Yes — on the pot itself or on the gift tag. Tell us your minimum quantity for branded pots and how much lead time you need.</p>
+          <p>Yes — on the pot or the gift tag. Give your minimum quantity for branded pots and the lead time you need.</p>
         </details>
         <details>
           <summary>How many can you make for a corporate order?</summary>
@@ -345,38 +273,28 @@
         </details>
         <details>
           <summary>I've never kept a plant alive. What should I get?</summary>
-          <p>Recommend two or three genuinely hard-to-kill plants you stock. This is where you sell to people who think they can't.</p>
-        </details>
-        <details>
-          <summary>Are the pots food-safe or outdoor-safe?</summary>
-          <p>Answer honestly about glaze, frost and drainage holes. Delete this question if it doesn't come up.</p>
+          <p>Name two or three genuinely hard-to-kill plants you stock. This is where you win customers who think they can't.</p>
         </details>
       </div>
     </div>
   </section>
 
   <!-- ================= CONTACT ================= -->
-  <section class="section contact" id="contact">
+  <section class="section contact" id="contact" data-bg="4">
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
         <p class="eyebrow">Get in touch</p>
         <h2>Tell us what you're after</h2>
-        <p class="sub">One plant or a thousand — we'll reply within one working day.</p>
+        <p class="sub">One plant or a thousand — we reply within one working day.</p>
       </div>
 
       <form class="form card reveal" id="leadForm" novalidate>
         <div class="row">
-          <label>Your name
-            <input type="text" name="name" required autocomplete="name" placeholder="Your name">
-          </label>
-          <label>Email
-            <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
-          </label>
+          <label>Your name<input type="text" name="name" required autocomplete="name" placeholder="Your name"></label>
+          <label>Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
         </div>
         <div class="row">
-          <label>Phone <span class="opt">optional</span>
-            <input type="tel" name="phone" autocomplete="tel" placeholder="+91">
-          </label>
+          <label>Phone <span class="opt">optional</span><input type="tel" name="phone" autocomplete="tel" placeholder="+91"></label>
           <label>What are you looking for?
             <select name="interest">
               <option>Indoor plants</option>
@@ -389,26 +307,33 @@
           </label>
         </div>
         <div class="row">
-          <label>Roughly how many? <span class="opt">optional</span>
-            <input type="text" name="quantity" placeholder="e.g. 1, or 150 for gifting">
-          </label>
-          <label>Needed by <span class="opt">optional</span>
-            <input type="text" name="deadline" placeholder="e.g. before Diwali">
-          </label>
+          <label>Roughly how many? <span class="opt">optional</span><input type="text" name="quantity" placeholder="e.g. 1, or 150 for gifting"></label>
+          <label>Needed by <span class="opt">optional</span><input type="text" name="deadline" placeholder="e.g. before Diwali"></label>
         </div>
         <label>Tell us more
           <textarea name="message" rows="5" required placeholder="What the plants are for, where they'll live, any branding you need."></textarea>
         </label>
-
-        <!-- honeypot: bots fill this in, people never see it -->
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
-
         <button class="btn btn-primary btn-lg btn-block" type="submit">Send enquiry</button>
         <p class="form-note" id="formNote" role="status"></p>
       </form>
     </div>
   </section>
 </main>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-btn lb-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+  <figure class="lb-figure">
+    <img id="lightboxImg" alt="" hidden>
+    <figcaption>
+      <span id="lightboxCap"></span>
+      <span class="lb-count" id="lightboxCount"></span>
+    </figcaption>
+  </figure>
+</div>
 
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer">
@@ -429,22 +354,19 @@
       <div>
         <h4>Explore</h4>
         <a href="#shop">What we grow</a>
-        <a href="#gifting">Corporate gifting</a>
-        <a href="#faq">FAQ</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#gifting">Gifting</a>
       </div>
       <div>
         <h4>Contact</h4>
-        <!-- EDIT #9 — your real email, phone, city and social links.
-             These placeholders will NOT reach you. -->
+        <!-- EDIT #10 — your real email, phone and city. These reach nobody. -->
         <a href="mailto:hello@example.com">hello@example.com</a>
         <a href="tel:+910000000000">+91 00000 00000</a>
         <span>Your city, India</span>
       </div>
     </nav>
   </div>
-  <div class="wrap footer-bottom">
-    <p>&copy; <span id="year"></span> Pot Culture. All rights reserved.</p>
-  </div>
+  <div class="wrap footer-bottom"><p>&copy; <span id="year"></span> Pot Culture. All rights reserved.</p></div>
 </footer>
 
 <script src="assets/js/main.js"></script>
