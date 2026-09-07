@@ -1,11 +1,11 @@
 /* ============================================================
-   EDIT #11 — WHERE ENQUIRIES GO.
+   EDIT #10 — WHERE ENQUIRIES GO.
    Put the email address you want enquiries sent to.
    Right now the form opens the visitor's email app with the
    message pre-written. See README.md for how to switch to a
    proper form service so it lands in your inbox automatically.
    ============================================================ */
-var CONTACT_EMAIL = "hello@example.com";
+var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
 
 (function () {
   "use strict";
@@ -116,7 +116,9 @@ var CONTACT_EMAIL = "hello@example.com";
     var name = form.name.value.trim();
     var email = form.email.value.trim();
     var phone = form.phone.value.trim();
-    var budget = form.budget.value;
+    var interest = form.interest.value;
+    var quantity = form.quantity.value.trim();
+    var deadline = form.deadline.value.trim();
     var message = form.message.value.trim();
 
     var invalid = null;
@@ -139,12 +141,14 @@ var CONTACT_EMAIL = "hello@example.com";
       "Name: " + name + "\n" +
       "Email: " + email + "\n" +
       "Phone: " + (phone || "not given") + "\n" +
-      "Budget: " + budget + "\n\n" +
+      "Looking for: " + interest + "\n" +
+      "Quantity: " + (quantity || "not given") + "\n" +
+      "Needed by: " + (deadline || "not given") + "\n\n" +
       message;
 
     window.location.href =
       "mailto:" + CONTACT_EMAIL +
-      "?subject=" + encodeURIComponent("Website enquiry from " + name) +
+      "?subject=" + encodeURIComponent(interest + " enquiry from " + name) +
       "&body=" + encodeURIComponent(body);
 
     say("Opening your email app — press send there to finish.", "ok");

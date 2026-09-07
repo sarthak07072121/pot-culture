@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- ============================================================
-     EDIT #1 — SEO. Change these three lines to match your business.
-     The <title> shows in the browser tab and as the Google headline.
+     EDIT #1 — SEO. This is what Google shows in search results.
+     Add your city to the title if you deliver locally, e.g.
+     "Pot Culture — Handmade pots & exotic plants in Pune"
      ============================================================ -->
-<title>Lumina — Design that grows your business</title>
-<meta name="description" content="Lumina helps small businesses launch beautiful, fast websites that turn visitors into customers. Fixed pricing, two-week delivery.">
-<meta name="theme-color" content="#4f46e5">
+<title>Pot Culture — Handmade pots, exotic plants &amp; corporate gifting</title>
+<meta name="description" content="Pot Culture grows exotic and indoor plants and makes pots by hand. Plants for your home, and thoughtful corporate gifting in bulk.">
+<meta name="theme-color" content="#2f7d5f">
 
-<!-- Social preview (what shows when someone shares your link) -->
-<meta property="og:title" content="Lumina — Design that grows your business">
-<meta property="og:description" content="Beautiful, fast websites that turn visitors into customers.">
+<meta property="og:title" content="Pot Culture — Handmade pots &amp; exotic plants">
+<meta property="og:description" content="Exotic and indoor plants in pots made by hand. Corporate gifting in bulk.">
 <meta property="og:type" content="website">
 
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪴</text></svg>">
 </head>
 <body>
 
@@ -27,18 +27,22 @@
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="header">
   <div class="wrap header-inner">
-    <!-- EDIT #2 — your business name -->
     <a class="brand" href="#home">
-      <span class="brand-mark">✦</span>
-      <span class="brand-name">Lumina</span>
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21v-7"/><path d="M12 14c0-4 2.6-6.6 6.5-7-.4 4-3 6.6-6.5 7Z"/>
+          <path d="M12 16c0-3.3-2.2-5.5-5.5-5.9.4 3.4 2.6 5.6 5.5 5.9Z"/>
+        </svg>
+      </span>
+      <span class="brand-name">Pot Culture</span>
     </a>
 
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="#features">Features</a>
+      <a href="#shop">What we grow</a>
+      <a href="#gifting">Corporate gifting</a>
       <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Get started</a>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Enquire</a>
     </nav>
 
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
@@ -53,36 +57,67 @@
   <section class="hero" id="home">
     <div class="wrap hero-inner">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Now booking for this month</p>
-        <!-- EDIT #3 — your headline. Say what you do and who for. -->
-        <h1>Websites that turn<br><span class="grad">visitors into customers</span></h1>
+        <p class="eyebrow">Grown and thrown by hand</p>
+        <!-- EDIT #2 — your headline. Add your city if you deliver locally. -->
+        <h1>Rare plants in<br><span class="grad">pots made by hand</span></h1>
         <p class="lede">
-          We design and build fast, beautiful websites for small businesses —
-          fixed price, delivered in two weeks, no jargon.
+          We grow exotic and indoor plants, and throw every pot ourselves —
+          so no two are quite alike. For your home, and for gifting your
+          team and clients something that stays alive.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#contact">Get a free quote</a>
-          <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+          <a class="btn btn-primary btn-lg" href="#contact">Enquire now</a>
+          <a class="btn btn-ghost btn-lg" href="#gifting">Corporate gifting</a>
         </div>
         <ul class="hero-points">
-          <li>Fixed pricing, no surprises</li>
-          <li>Live in two weeks</li>
-          <li>You own everything</li>
+          <li>Handmade pots</li>
+          <li>Exotic varieties</li>
+          <li>Bulk gifting</li>
         </ul>
       </div>
 
       <div class="hero-visual reveal" aria-hidden="true">
-        <div class="mock">
-          <div class="mock-bar"><i></i><i></i><i></i></div>
-          <div class="mock-body">
-            <div class="mock-hero"></div>
-            <div class="mock-line w80"></div>
-            <div class="mock-line w60"></div>
-            <div class="mock-cards">
-              <div class="mock-card"></div><div class="mock-card"></div><div class="mock-card"></div>
-            </div>
-          </div>
-        </div>
+        <svg class="plant-art" viewBox="0 0 440 420" role="img">
+          <defs>
+            <linearGradient id="leafA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="var(--leaf-1)"/><stop offset="100%" stop-color="var(--leaf-2)"/>
+            </linearGradient>
+            <linearGradient id="clayA" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--clay-1)"/><stop offset="100%" stop-color="var(--clay-2)"/>
+            </linearGradient>
+          </defs>
+
+          <circle class="art-bg" cx="220" cy="200" r="180"/>
+
+          <!-- back plant, small pot -->
+          <g class="art-sway art-sway-slow">
+            <path d="M348 300c0-42 8-70 30-88-6 40-12 66-30 88Z" fill="url(#leafA)" opacity=".75"/>
+            <path d="M348 300c-2-38-12-62-34-76 4 34 14 58 34 76Z" fill="url(#leafA)" opacity=".6"/>
+          </g>
+          <path d="M322 296h58l-8 62a10 10 0 0 1-10 9h-22a10 10 0 0 1-10-9Z" fill="url(#clayA)"/>
+          <rect x="316" y="288" width="70" height="16" rx="6" fill="url(#clayA)"/>
+
+          <!-- main plant -->
+          <g class="art-sway">
+            <path d="M220 268c-4-58 14-100 56-124-8 60-24 98-56 124Z" fill="url(#leafA)"/>
+            <path d="M220 268c-30-30-42-72-34-124 34 34 44 76 34 124Z" fill="url(#leafA)" opacity=".82"/>
+            <path d="M220 268c22-40 58-60 106-58-34 34-70 52-106 58Z" fill="url(#leafA)" opacity=".65"/>
+            <path d="M220 268c-42-8-72-32-90-70 44 8 74 30 90 70Z" fill="url(#leafA)" opacity=".55"/>
+            <path d="M220 272V196" stroke="var(--leaf-2)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </g>
+          <path d="M158 268h124l-14 96a14 14 0 0 1-14 12h-68a14 14 0 0 1-14-12Z" fill="url(#clayA)"/>
+          <rect x="150" y="256" width="140" height="24" rx="9" fill="url(#clayA)"/>
+          <path d="M176 300h88" stroke="var(--clay-line)" stroke-width="4" stroke-linecap="round" opacity=".45"/>
+
+          <!-- tiny cutting -->
+          <g class="art-sway art-sway-slow">
+            <path d="M96 332c0-26 6-44 20-56-4 26-8 42-20 56Z" fill="url(#leafA)" opacity=".7"/>
+          </g>
+          <path d="M78 330h40l-6 42a8 8 0 0 1-8 7h-12a8 8 0 0 1-8-7Z" fill="url(#clayA)"/>
+          <rect x="73" y="323" width="50" height="13" rx="5" fill="url(#clayA)"/>
+
+          <ellipse class="art-shade" cx="220" cy="384" rx="150" ry="13"/>
+        </svg>
         <div class="blob blob-a"></div>
         <div class="blob blob-b"></div>
       </div>
@@ -92,149 +127,159 @@
   <!-- ================= STATS ================= -->
   <section class="strip">
     <div class="wrap strip-inner">
-      <!-- EDIT #4 — use real numbers, or delete this whole <section>. -->
-      <div class="stat"><b>—</b><span>Projects delivered</span></div>
-      <div class="stat"><b>—</b><span>Avg. load time</span></div>
-      <div class="stat"><b>—</b><span>Client rating</span></div>
-      <div class="stat"><b>—</b><span>Years in business</span></div>
+      <!-- EDIT #3 — put your real numbers here, or delete this whole
+           <section>. Don't invent figures you can't stand behind. -->
+      <div class="stat"><b>—</b><span>Plant varieties</span></div>
+      <div class="stat"><b>—</b><span>Pots thrown by hand</span></div>
+      <div class="stat"><b>—</b><span>Corporate orders</span></div>
+      <div class="stat"><b>—</b><span>Cities delivered to</span></div>
     </div>
   </section>
 
-  <!-- ================= FEATURES ================= -->
-  <section class="section" id="features">
+  <!-- ================= WHAT WE GROW ================= -->
+  <section class="section" id="shop">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">What you get</p>
-        <h2>Everything your business needs online</h2>
-        <p class="sub">No add-ons, no upsells. Every project includes all of it.</p>
+        <p class="eyebrow">What we grow &amp; make</p>
+        <h2>Plants, and something worth planting them in</h2>
+        <p class="sub">Everything is grown or made by us — nothing bought in and re-labelled.</p>
       </div>
 
       <div class="grid grid-3">
-        <!-- EDIT #5 — replace these six with your real services. -->
+        <!-- EDIT #4 — adjust these to exactly what you sell. -->
         <article class="card reveal">
-          <div class="icon">◆</div>
-          <h3>Custom design</h3>
-          <p>Built around your brand and your customers — never a recycled template.</p>
+          <div class="icon" aria-hidden="true">🪴</div>
+          <h3>Indoor plants</h3>
+          <p>Easy, forgiving greenery for homes and desks — pothos, snake plants, philodendrons and more.</p>
         </article>
         <article class="card reveal">
-          <div class="icon">⚡</div>
-          <h3>Fast by default</h3>
-          <p>Pages load in under a second, so visitors don't leave before they arrive.</p>
+          <div class="icon" aria-hidden="true">🌿</div>
+          <h3>Exotic &amp; rare varieties</h3>
+          <p>Uncommon plants for collectors, grown in our own nursery rather than shipped in.</p>
         </article>
         <article class="card reveal">
-          <div class="icon">▣</div>
-          <h3>Works on every phone</h3>
-          <p>Most of your traffic is mobile. Your site is designed for it first.</p>
+          <div class="icon" aria-hidden="true">🏺</div>
+          <h3>Handmade pots</h3>
+          <p>Thrown and glazed by hand. Small variations are the point — every piece is one of one.</p>
         </article>
         <article class="card reveal">
-          <div class="icon">◎</div>
-          <h3>Found on Google</h3>
-          <p>Clean structure, real page titles, and the technical basics search engines want.</p>
+          <div class="icon" aria-hidden="true">🎁</div>
+          <h3>Corporate gifting</h3>
+          <p>Bulk orders for teams, clients and events, with your branding on the pot or the tag.</p>
         </article>
         <article class="card reveal">
-          <div class="icon">✉</div>
-          <h3>Enquiries to your inbox</h3>
-          <p>A contact form that actually reaches you, with spam filtered out.</p>
+          <div class="icon" aria-hidden="true">💧</div>
+          <h3>Care that continues</h3>
+          <p>Every plant leaves with a care card, and you can message us whenever something looks wrong.</p>
         </article>
         <article class="card reveal">
-          <div class="icon">⟳</div>
-          <h3>Easy to update</h3>
-          <p>Change your own text and prices — we show you how in a short handover call.</p>
+          <div class="icon" aria-hidden="true">✎</div>
+          <h3>Custom orders</h3>
+          <p>A particular size, colour or glaze to match a space? Tell us and we'll make it.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= CORPORATE GIFTING ================= -->
+  <section class="section section-alt" id="gifting">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">For businesses</p>
+        <h2>Corporate gifts that don't end up in a drawer</h2>
+        <p class="sub">
+          Onboarding kits, Diwali hampers, client thank-yous, event giveaways.
+          A living plant in a handmade pot outlasts a mug or a diary.
+        </p>
+      </div>
+
+      <!-- EDIT #5 — YOUR PRICES.
+           These read ₹___ on purpose. Publishing a made-up price is worse
+           than publishing a blank. Fill in your real numbers, or delete the
+           .amount line from each card and let people enquire instead. -->
+      <div class="toggle reveal">
+        <span class="toggle-label is-on" id="lblM">Per gift</span>
+        <button class="switch" id="billing" role="switch" aria-checked="false" aria-label="Switch between per-gift and bulk pricing">
+          <span class="knob"></span>
+        </button>
+        <span class="toggle-label" id="lblY">Bulk <em>50+ units</em></span>
+      </div>
+
+      <div class="grid grid-3 pricing-grid">
+        <article class="card price reveal">
+          <h3>Desk gift</h3>
+          <p class="price-desc">A small plant in a handmade pot, boxed with a care card.</p>
+          <p class="amount"><span class="cur">₹</span><b data-m="___" data-y="___">___</b><span class="per" data-m="per gift" data-y="per gift, 50+">per gift</span></p>
+          <ul class="ticks">
+            <li>Succulent or small indoor plant</li>
+            <li>Handmade pot</li>
+            <li>Gift box &amp; care card</li>
+            <li>Printed message tag</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#contact">Enquire</a>
+        </article>
+
+        <article class="card price featured reveal">
+          <span class="badge">Most ordered</span>
+          <h3>Signature</h3>
+          <p class="price-desc">A statement plant with your logo on the pot.</p>
+          <p class="amount"><span class="cur">₹</span><b data-m="___" data-y="___">___</b><span class="per" data-m="per gift" data-y="per gift, 50+">per gift</span></p>
+          <ul class="ticks">
+            <li>Larger or exotic plant</li>
+            <li>Your branding on the pot</li>
+            <li>Premium packaging</li>
+            <li>Delivered to one address or many</li>
+            <li>Care support for recipients</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="#contact">Enquire</a>
+        </article>
+
+        <article class="card price reveal">
+          <h3>Bespoke</h3>
+          <p class="price-desc">Large events, custom glazes, or a curated mix.</p>
+          <p class="amount let">Let's talk</p>
+          <ul class="ticks">
+            <li>Custom pot shape &amp; glaze</li>
+            <li>Curated plant selection</li>
+            <li>Event and bulk logistics</li>
+            <li>Priority timelines</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#contact">Get a quote</a>
+        </article>
+      </div>
+      <p class="fineprint">
+        <!-- EDIT #6 — your real terms. Delete anything that isn't true. -->
+        Prices exclude GST and delivery. Minimum order and lead time depend on quantity — ask us.
+      </p>
     </div>
   </section>
 
   <!-- ================= HOW IT WORKS ================= -->
-  <section class="section section-alt" id="how">
+  <section class="section" id="how">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The process</p>
-        <h2>Three steps, two weeks</h2>
-        <p class="sub">You stay in control the whole way. Nothing goes live until you approve it.</p>
+        <p class="eyebrow">Ordering</p>
+        <h2>How it works</h2>
+        <p class="sub">Same for one plant or five hundred.</p>
       </div>
 
       <ol class="steps">
         <li class="step reveal">
           <span class="step-num">1</span>
-          <h3>We talk</h3>
-          <p>A 20-minute call about your business, your customers, and what the site has to do.</p>
+          <h3>Tell us what you need</h3>
+          <p>Quantity, budget, and whether it's for a home or a team. We'll suggest plants that suit the light and the occasion.</p>
         </li>
         <li class="step reveal">
           <span class="step-num">2</span>
-          <h3>We build</h3>
-          <p>You see a working draft in week one and get one round of changes, included.</p>
+          <h3>We pot it up</h3>
+          <p>You approve the plant and pot pairing — and the branding, for corporate orders — before anything is made.</p>
         </li>
         <li class="step reveal">
           <span class="step-num">3</span>
-          <h3>You launch</h3>
-          <p>We publish it, hand over every file and password, and stay on call for 30 days.</p>
+          <h3>Delivered, alive</h3>
+          <p>Packed so it survives the journey, with a care card. Message us any time if a plant looks unhappy.</p>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <!-- ================= PRICING ================= -->
-  <section class="section" id="pricing">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Pricing</p>
-        <h2>Simple, fixed prices</h2>
-        <p class="sub">Pay once. No monthly lock-in unless you want ongoing care.</p>
-      </div>
-
-      <!-- EDIT #6 — your real tiers and prices. data-m = monthly, data-y = yearly. -->
-      <div class="toggle reveal">
-        <span class="toggle-label is-on" id="lblM">One-off</span>
-        <button class="switch" id="billing" role="switch" aria-checked="false" aria-label="Switch pricing period">
-          <span class="knob"></span>
-        </button>
-        <span class="toggle-label" id="lblY">With care plan <em>save 15%</em></span>
-      </div>
-
-      <div class="grid grid-3 pricing-grid">
-        <article class="card price reveal">
-          <h3>Starter</h3>
-          <p class="price-desc">A single page that explains what you do.</p>
-          <p class="amount"><span class="cur">₹</span><b data-m="14,999" data-y="1,299">14,999</b><span class="per" data-m="one-off" data-y="/mo">one-off</span></p>
-          <ul class="ticks">
-            <li>One-page site</li>
-            <li>Contact form</li>
-            <li>Mobile ready</li>
-            <li>Live in 1 week</li>
-          </ul>
-          <a class="btn btn-ghost btn-block" href="#contact">Choose Starter</a>
-        </article>
-
-        <article class="card price featured reveal">
-          <span class="badge">Most popular</span>
-          <h3>Business</h3>
-          <p class="price-desc">A full site for a growing business.</p>
-          <p class="amount"><span class="cur">₹</span><b data-m="34,999" data-y="2,999">34,999</b><span class="per" data-m="one-off" data-y="/mo">one-off</span></p>
-          <ul class="ticks">
-            <li>Up to 6 pages</li>
-            <li>Everything in Starter</li>
-            <li>Google Business setup</li>
-            <li>Basic SEO</li>
-            <li>30 days support</li>
-          </ul>
-          <a class="btn btn-primary btn-block" href="#contact">Choose Business</a>
-        </article>
-
-        <article class="card price reveal">
-          <h3>Custom</h3>
-          <p class="price-desc">Booking, payments, or anything unusual.</p>
-          <p class="amount let">Let's talk</p>
-          <ul class="ticks">
-            <li>Online payments</li>
-            <li>Bookings or accounts</li>
-            <li>Integrations</li>
-            <li>Priority support</li>
-          </ul>
-          <a class="btn btn-ghost btn-block" href="#contact">Get a quote</a>
-        </article>
-      </div>
-      <p class="fineprint">Prices exclude GST. Domain and hosting billed at cost, in your name.</p>
     </div>
   </section>
 
@@ -242,29 +287,30 @@
   <section class="section section-alt" id="testimonials">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">Proof</p>
-        <h2>What clients say</h2>
+        <p class="eyebrow">Kind words</p>
+        <h2>What customers say</h2>
       </div>
 
       <!-- ============================================================
-           EDIT #7 — IMPORTANT: these are EMPTY PLACEHOLDERS on purpose.
-           Only put a quote here once a real customer has actually given
-           it to you, with their real name. Publishing invented reviews is
-           illegal advertising in most countries. No real quotes yet?
-           Delete this entire <section> and the "Proof" nav link.
+           EDIT #7 — DELIBERATELY EMPTY. Only paste a quote here once a
+           real customer has actually said it, with their real name and
+           permission. Invented reviews are illegal advertising in India
+           under the CCPA 2019 guidelines and can be fined.
+           No real quotes yet? DELETE this whole <section> and remove the
+           "Kind words" content — the page reads fine without it.
            ============================================================ -->
       <div class="grid grid-3">
         <figure class="card quote reveal">
           <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Role, Company</span></figcaption>
+          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
         </figure>
         <figure class="card quote reveal">
           <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Role, Company</span></figcaption>
+          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
         </figure>
         <figure class="card quote reveal">
           <blockquote>“Paste a real customer's words here.”</blockquote>
-          <figcaption><b>Customer name</b><span>Role, Company</span></figcaption>
+          <figcaption><b>Customer name</b><span>Company, or "home customer"</span></figcaption>
         </figure>
       </div>
     </div>
@@ -275,30 +321,35 @@
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
         <p class="eyebrow">Questions</p>
-        <h2>Before you ask</h2>
+        <h2>Before you order</h2>
       </div>
 
-      <!-- EDIT #8 — answer the questions your customers actually ask you. -->
+      <!-- EDIT #8 — replace with the questions customers actually ask you,
+           and answer them the way you'd answer on the phone. -->
       <div class="faq reveal">
         <details>
-          <summary>How long does it take?</summary>
-          <p>Two weeks from our first call for most projects, as long as you can get us your text and images in the first few days.</p>
+          <summary>Do you deliver, and where?</summary>
+          <p>Add the cities you deliver to here, and what delivery costs. If you only do local delivery or pickup, say that plainly — people would rather know now.</p>
         </details>
         <details>
-          <summary>What do you need from me?</summary>
-          <p>Your logo if you have one, photos, and a rough idea of what you want to say. If you don't have text, we'll draft it and you approve it.</p>
+          <summary>What if the plant arrives damaged?</summary>
+          <p>State your actual replacement policy. Plants get knocked about in transit, and a clear promise here removes the main reason people hesitate.</p>
         </details>
         <details>
-          <summary>Do I own the site?</summary>
-          <p>Yes, completely. The domain, hosting, and files are registered in your name and handed over at launch.</p>
+          <summary>Can you put our logo on the pots?</summary>
+          <p>Yes — on the pot itself or on the gift tag. Tell us your minimum quantity for branded pots and how much lead time you need.</p>
         </details>
         <details>
-          <summary>What does it cost to keep running?</summary>
-          <p>A domain is roughly ₹900 a year and hosting is free for a site like this. We bill those at cost, with no markup.</p>
+          <summary>How many can you make for a corporate order?</summary>
+          <p>Give a real range and lead time. Every gifting buyer asks this first, and a straight answer wins the enquiry.</p>
         </details>
         <details>
-          <summary>Can you update it later?</summary>
-          <p>Yes. Small changes are billed hourly, or you can take a care plan for ongoing updates.</p>
+          <summary>I've never kept a plant alive. What should I get?</summary>
+          <p>Recommend two or three genuinely hard-to-kill plants you stock. This is where you sell to people who think they can't.</p>
+        </details>
+        <details>
+          <summary>Are the pots food-safe or outdoor-safe?</summary>
+          <p>Answer honestly about glaze, frost and drainage holes. Delete this question if it doesn't come up.</p>
         </details>
       </div>
     </div>
@@ -308,15 +359,15 @@
   <section class="section contact" id="contact">
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
-        <p class="eyebrow">Get started</p>
-        <h2>Tell us about your business</h2>
-        <p class="sub">Fill this in and we'll reply within one working day with a price and a timeline.</p>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Tell us what you're after</h2>
+        <p class="sub">One plant or a thousand — we'll reply within one working day.</p>
       </div>
 
       <form class="form card reveal" id="leadForm" novalidate>
         <div class="row">
           <label>Your name
-            <input type="text" name="name" required autocomplete="name" placeholder="Sarthak">
+            <input type="text" name="name" required autocomplete="name" placeholder="Your name">
           </label>
           <label>Email
             <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
@@ -326,20 +377,30 @@
           <label>Phone <span class="opt">optional</span>
             <input type="tel" name="phone" autocomplete="tel" placeholder="+91">
           </label>
-          <label>Budget
-            <select name="budget">
-              <option>Not sure yet</option>
-              <option>Under ₹15,000</option>
-              <option>₹15,000 – ₹35,000</option>
-              <option>Over ₹35,000</option>
+          <label>What are you looking for?
+            <select name="interest">
+              <option>Indoor plants</option>
+              <option>Exotic / rare plants</option>
+              <option>Handmade pots</option>
+              <option>Corporate gifting</option>
+              <option>Custom order</option>
+              <option>Something else</option>
             </select>
           </label>
         </div>
-        <label>What do you need?
-          <textarea name="message" rows="5" required placeholder="A short description of your business and what the website should do."></textarea>
+        <div class="row">
+          <label>Roughly how many? <span class="opt">optional</span>
+            <input type="text" name="quantity" placeholder="e.g. 1, or 150 for gifting">
+          </label>
+          <label>Needed by <span class="opt">optional</span>
+            <input type="text" name="deadline" placeholder="e.g. before Diwali">
+          </label>
+        </div>
+        <label>Tell us more
+          <textarea name="message" rows="5" required placeholder="What the plants are for, where they'll live, any branding you need."></textarea>
         </label>
 
-        <!-- honeypot: bots fill this, humans never see it -->
+        <!-- honeypot: bots fill this in, people never see it -->
         <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
 
         <button class="btn btn-primary btn-lg btn-block" type="submit">Send enquiry</button>
@@ -353,27 +414,36 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <a class="brand" href="#home"><span class="brand-mark">✦</span><span class="brand-name">Lumina</span></a>
-      <p>Websites for small businesses that need to look serious.</p>
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21v-7"/><path d="M12 14c0-4 2.6-6.6 6.5-7-.4 4-3 6.6-6.5 7Z"/>
+            <path d="M12 16c0-3.3-2.2-5.5-5.5-5.9.4 3.4 2.6 5.6 5.5 5.9Z"/>
+          </svg>
+        </span>
+        <span class="brand-name">Pot Culture</span>
+      </a>
+      <p>Exotic and indoor plants, in pots we make by hand. Home and corporate gifting.</p>
     </div>
     <nav class="footer-links" aria-label="Footer">
       <div>
-        <h4>Site</h4>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
+        <h4>Explore</h4>
+        <a href="#shop">What we grow</a>
+        <a href="#gifting">Corporate gifting</a>
         <a href="#faq">FAQ</a>
       </div>
       <div>
         <h4>Contact</h4>
-        <!-- EDIT #9 — your real email, phone and address -->
+        <!-- EDIT #9 — your real email, phone, city and social links.
+             These placeholders will NOT reach you. -->
         <a href="mailto:hello@example.com">hello@example.com</a>
         <a href="tel:+910000000000">+91 00000 00000</a>
-        <span>City, India</span>
+        <span>Your city, India</span>
       </div>
     </nav>
   </div>
   <div class="wrap footer-bottom">
-    <p>&copy; <span id="year"></span> Lumina. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> Pot Culture. All rights reserved.</p>
   </div>
 </footer>
 

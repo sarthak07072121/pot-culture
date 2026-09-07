@@ -3,16 +3,24 @@
    site re-skins itself. Everything else is built from them.
    ============================================================ */
 :root{
-  --brand:      #4f46e5;   /* main colour: buttons, links      */
-  --brand-dark: #4338ca;   /* darker shade for hover           */
-  --accent:     #06b6d4;   /* second colour for gradients      */
+  --brand:      #2f7d5f;   /* main colour: buttons, links      */
+  --brand-dark: #24634a;   /* darker shade for hover           */
+  --accent:     #7cb342;   /* second colour for gradients      */
+  --clay:       #c07a4e;   /* terracotta, for pots and accents */
 
-  --ink:      #0f1222;
-  --ink-soft: #4a4f6a;
-  --line:     #e5e7f0;
+  --ink:      #16221c;
+  --ink-soft: #55665d;
+  --line:     #e2eae4;
   --bg:       #ffffff;
-  --bg-alt:   #f7f8fc;
+  --bg-alt:   #f5f9f5;
   --card:     #ffffff;
+
+  /* illustration */
+  --leaf-1: #4a9c6d;
+  --leaf-2: #2f7d5f;
+  --clay-1: #d08a5c;
+  --clay-2: #b06a42;
+  --clay-line: #8a4f2e;
 
   --radius: 14px;
   --radius-lg: 22px;
@@ -25,13 +33,14 @@
 
 @media (prefers-color-scheme: dark){
   :root{
-    --ink:#eef0f8; --ink-soft:#a2a8c4; --line:#262a42;
-    --bg:#0d0f1c; --bg-alt:#12142440; --card:#161930;
+    --ink:#e8f0ea; --ink-soft:#9fb3a7; --line:#25352c;
+    --bg:#0d1410; --bg-alt:#111a15; --card:#141e18;
+    --leaf-1:#5cb682; --leaf-2:#348a66;
+    --clay-1:#c9835a; --clay-2:#a25f3c; --clay-line:#7a4527;
     --shadow-sm:0 1px 2px rgba(0,0,0,.4);
     --shadow-md:0 8px 30px rgba(0,0,0,.45);
     --shadow-lg:0 24px 60px rgba(0,0,0,.55);
   }
-  :root{ --bg-alt:#101226; }
 }
 
 /* ---------- base ---------- */
@@ -94,9 +103,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 .brand{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink);font-weight:800;letter-spacing:-.02em;font-size:1.16rem}
 .brand:hover{text-decoration:none}
 .brand-mark{
-  display:grid;place-items:center;width:30px;height:30px;border-radius:9px;
-  background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;font-size:.9rem;
+  display:grid;place-items:center;width:32px;height:32px;border-radius:10px;
+  background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;
 }
+.brand-mark svg{width:19px;height:19px}
 .nav{display:flex;align-items:center;gap:2rem}
 .nav a{color:var(--ink-soft);font-weight:500;font-size:.95rem;position:relative}
 .nav a:hover{color:var(--ink);text-decoration:none}
@@ -120,22 +130,18 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-points li::before{content:"✓";color:var(--brand);font-weight:800}
 
 .hero-visual{position:relative;display:grid;place-items:center}
-.mock{
-  position:relative;z-index:2;width:100%;background:var(--card);
-  border:1px solid var(--line);border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-lg);overflow:hidden;transform:rotate(-1.4deg);
+.plant-art{position:relative;z-index:2;width:100%;height:auto;max-width:460px;overflow:visible}
+.art-bg{fill:color-mix(in srgb,var(--brand) 8%,transparent)}
+.art-shade{fill:var(--ink);opacity:.07}
+.art-sway{transform-origin:220px 280px;animation:sway 7s ease-in-out infinite}
+.art-sway-slow{transform-origin:350px 300px;animation-duration:9s;animation-delay:-2s}
+@keyframes sway{
+  0%,100%{transform:rotate(-1.1deg)}
+  50%{transform:rotate(1.4deg)}
 }
-.mock-bar{display:flex;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--bg-alt)}
-.mock-bar i{width:11px;height:11px;border-radius:50%;background:var(--line)}
-.mock-body{padding:22px}
-.mock-hero{height:104px;border-radius:12px;background:linear-gradient(120deg,var(--brand),var(--accent));margin-bottom:18px;opacity:.92}
-.mock-line{height:11px;border-radius:6px;background:var(--line);margin-bottom:10px}
-.mock-line.w80{width:80%} .mock-line.w60{width:60%}
-.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:18px}
-.mock-card{height:58px;border-radius:10px;background:var(--bg-alt);border:1px solid var(--line)}
 .blob{position:absolute;border-radius:50%;filter:blur(72px);opacity:.32;z-index:1}
 .blob-a{width:330px;height:330px;background:var(--brand);top:-60px;right:-50px}
-.blob-b{width:280px;height:280px;background:var(--accent);bottom:-70px;left:-60px}
+.blob-b{width:280px;height:280px;background:var(--clay);bottom:-70px;left:-60px;opacity:.22}
 
 /* ---------- strip / stats ---------- */
 .strip{border-block:1px solid var(--line);background:var(--bg-alt)}
@@ -161,8 +167,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 .card p{color:var(--ink-soft);font-size:.96rem;margin:0}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:color-mix(in srgb,var(--brand) 35%,var(--line))}
 .icon{
-  display:grid;place-items:center;width:44px;height:44px;border-radius:12px;margin-bottom:16px;
-  background:color-mix(in srgb,var(--brand) 12%,transparent);color:var(--brand);font-size:1.15rem;
+  display:grid;place-items:center;width:46px;height:46px;border-radius:13px;margin-bottom:16px;
+  background:color-mix(in srgb,var(--brand) 11%,transparent);color:var(--brand);
+  font-size:1.35rem;line-height:1;
 }
 
 /* ---------- steps ---------- */
@@ -262,7 +269,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* ---------- responsive ---------- */
 @media (max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:44px}
-  .hero-visual{order:-1;max-width:520px;margin-inline:auto}
+  .hero-visual{order:-1;max-width:460px;margin-inline:auto}
   .grid-3,.steps{grid-template-columns:1fr 1fr}
   .strip-inner{grid-template-columns:1fr 1fr;gap:26px}
   .price.featured{transform:none}
@@ -283,7 +290,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   .hero-actions .btn{flex:1 1 100%}
   /* headline first on phones; the mockup is decoration, not the message */
   .hero-visual{order:0;max-width:none;margin-inline:0}
-  .mock{transform:none}
+  .plant-art{max-width:340px;margin-inline:auto}
 }
 @media (max-width:420px){
   .strip-inner{grid-template-columns:1fr}
@@ -297,6 +304,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 @media print{
   .site-header,.burger,.hero-visual,.blob,.btn{display:none!important}
+  .quote{display:none!important}
   body{font-size:12pt;color:#000;background:#fff}
   .section{padding:16pt 0;break-inside:avoid}
 }

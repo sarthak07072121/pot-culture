@@ -1,7 +1,8 @@
-# Business landing page
+# Pot Culture — website
 
-A complete one-page business website. No installation, no build step, no
-dependencies — it is three files that any web browser can open.
+A complete one-page website for Pot Culture: exotic and indoor plants,
+handmade pots, and corporate gifting. No installation, no build step, no
+dependencies — three files that any web browser can open.
 
 ```
 index.html              the page and all its text
@@ -22,30 +23,44 @@ you'll find them all. In order:
 
 | # | File | What to change |
 |---|------|----------------|
-| 1 | index.html | Page title and description (what Google shows) |
-| 2 | index.html | Your business name in the header |
-| 3 | index.html | The headline — the most important sentence on the page |
-| 4 | index.html | Stats strip — use real numbers or delete the section |
-| 5 | index.html | Your six services |
-| 6 | index.html | Your pricing tiers |
+| 1 | index.html | Page title and description — what Google shows. Add your city |
+| 2 | index.html | The headline |
+| 3 | index.html | Stats strip — real numbers, or delete the section |
+| 4 | index.html | The six things you sell |
+| 5 | index.html | **Gifting prices — currently `₹___`, must be filled in** |
+| 6 | index.html | Terms line under the prices (GST, delivery, minimums) |
 | 7 | index.html | Testimonials — **read the warning there** |
-| 8 | index.html | FAQ — the questions customers actually ask you |
+| 8 | index.html | FAQ — answer these in your own words |
 | 9 | index.html | Footer: your email, phone, city |
-| 10 | style.css | Your brand colours (three lines re-skin the whole site) |
-| 11 | main.js | The email address enquiries go to |
+| 10 | assets/js/main.js | The email address enquiries go to |
+| — | assets/css/style.css | Your colours (see below) |
+
+### The two that matter most
+
+**Prices (`EDIT #5`).** The gifting cards show `₹___` on purpose. A blank is
+honest; an invented price is not. Put your real numbers in, or delete the
+`<p class="amount">` line from each card so people simply enquire.
+
+**Your email (`EDIT #9` and `#10`).** Both currently say
+`hello@example.com`. Until you change them, enquiries go nowhere.
 
 ### Changing the colours
 
 Open `assets/css/style.css`. The first three lines are:
 
 ```css
---brand:      #4f46e5;   /* main colour: buttons, links */
---brand-dark: #4338ca;   /* darker shade for hover      */
---accent:     #06b6d4;   /* second colour for gradients */
+--brand:      #2f7d5f;   /* nursery green: buttons, links */
+--brand-dark: #24634a;   /* darker shade for hover        */
+--accent:     #7cb342;   /* leaf green for gradients      */
+--clay:       #c07a4e;   /* terracotta accents            */
 ```
 
-Replace the colour codes and the entire site updates. Pick colours at
-[coolors.co](https://coolors.co) if you don't have brand colours yet.
+The pot and leaf colours in the hero illustration are separate
+(`--leaf-1`, `--leaf-2`, `--clay-1`, `--clay-2`) and have their own dark-mode
+values a few lines below.
+
+Replace the colour codes and the entire site updates — buttons, links,
+gradients, the illustration, everything.
 
 ## The contact form
 
@@ -99,8 +114,10 @@ Alternatives that work the same way: [Vercel](https://vercel.com) or
 ## Before you launch — checklist
 
 - [ ] Every `EDIT #` marker dealt with
-- [ ] No text still says "Lumina" (search the files for it)
+- [ ] No `₹___` left anywhere (search the file for `___`)
+- [ ] No `example.com` left anywhere — email and phone are yours
 - [ ] Testimonials are real, or the section is deleted
-- [ ] Prices and phone number are correct
+- [ ] FAQ answers replaced with your real answers
+- [ ] Delivery cities and lead times are accurate
 - [ ] Contact form tested — send yourself one
 - [ ] Opened it on your own phone
