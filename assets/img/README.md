@@ -8,21 +8,22 @@ site live today and add photos later.
 
 Use these exact names. Any file you don't provide simply stays as artwork.
 
-### Backgrounds — the ones that transition as you scroll
+### The five products (highest priority — these sell)
 
-These are the big ones. Landscape, and they should be *calm* — the text sits
-on top of them, so busy photos make it unreadable. Slightly out-of-focus or
-open-space shots work best.
+`shop-1.jpg` through `shop-5.jpg`, matching the order of the `PRODUCTS`
+array in `assets/js/main.js`:
 
-| File | Appears behind |
-|------|----------------|
-| `bg-1.jpg` | the opening screen |
-| `bg-2.jpg` | "What we sell" |
-| `bg-3.jpg` | the gallery |
-| `bg-4.jpg` | corporate gifting + how it works |
-| `bg-5.jpg` | FAQ + contact |
+| File | Product |
+|------|---------|
+| `shop-1.jpg` | Variegated Monstera Albo |
+| `shop-2.jpg` | Snake Plant |
+| `shop-3.jpg` | ZZ Plant Raven |
+| `shop-4.jpg` | Philodendron Birkin |
+| `shop-5.jpg` | Anthurium Andraeanum |
 
-### The three cards
+Square (1:1) crop — the shop grid is a square photo above each card's text.
+
+### The three "what we sell" cards
 
 | File | Card |
 |------|------|
@@ -30,14 +31,17 @@ open-space shots work best.
 | `grow-2.jpg` | Potted plants |
 | `grow-3.jpg` | Pots |
 
-### The gallery
+### Corporate gifting proof photos
 
-`shot-1.jpg` through `shot-6.jpg`. `shot-1` is displayed tall, `shot-4` wide —
-so give those two a portrait and a landscape photo respectively.
+| File | Where |
+|------|-------|
+| `gifting.jpg` | The tall photo — portrait/3:4 crop |
+| `gifting-packed.jpg` | A packed corporate order, ready for delivery |
+| `gifting-tags.jpg` | Branded gift tags on an order |
+| `gifting-nursery.jpg` | Plants at the nursery, ready to pot |
 
-### Two extras
+### One extra
 
-- `gifting.jpg` — tall/portrait, next to the gifting prices
 - `social.jpg` — 1200×630, what shows when someone shares your link on
   WhatsApp or LinkedIn
 
@@ -45,25 +49,26 @@ so give those two a portrait and a landscape photo respectively.
 
 Shoot at 4K — absolutely. But **don't put the raw 4K file on the website.**
 
-A 3840px photo straight from a phone is often 6–12 MB. Fifteen of those is
-over 100 MB, and on mobile data your page would take a minute to load. People
-leave after three seconds. You would lose customers to a detail nobody can see.
+A 3840px photo straight from a phone is often 6–12 MB. Fourteen of those is
+close to 100 MB, and this site is built mobile-first for visitors on 4G —
+that's a page that takes a minute to load, and people leave after three
+seconds. You'd lose customers to a detail nobody can see.
 
 Export for the web at:
 
 | Use | Width | Target file size |
 |-----|-------|------------------|
-| Backgrounds (`bg-*`) | 2560px | under 400 KB |
-| Cards and gallery | 1600px | under 250 KB |
+| Shop photos (`shop-*`) | 1200px, square crop | under 150 KB |
+| Cards and gifting proof | 1600px | under 250 KB |
 | `social.jpg` | 1200×630 | under 200 KB |
 
-At 2560px wide the photo is still razor-sharp on a 4K monitor, because it
-gets displayed at roughly half the screen width. Keep your full-resolution
-originals somewhere safe — just don't upload them.
+Keep your full-resolution originals somewhere safe — just don't upload them.
+Every `<img>` on the site already has `loading="lazy"` so photos below the
+fold don't cost anything until a visitor actually scrolls to them.
 
 **JPG at about 80% quality** is right for photos. WebP is smaller again if
 your editor exports it; rename the files to `.webp` and update the paths in
-`index.html`.
+`index.html` and the `image` field in each product in `assets/js/main.js`.
 
 ## Resizing them
 
@@ -83,10 +88,11 @@ and are free:
 
 ## Two things worth doing
 
-**Shoot against a plain background.** A pot against a clean wall photographs
-far better than a pot on a cluttered table, and it makes the site look
-expensive.
+**Shoot the shop photos against a plain background.** A pot against a clean
+wall photographs far better than a pot on a cluttered table — this matters
+more for the shop than anywhere else on the site, since these are the
+photos a buyer judges the product by.
 
-**Keep the alt text honest.** In `index.html` each photo has an `alt="..."`
-description. Update it to describe the real photo — it's what blind visitors
-hear, and Google reads it too.
+**Keep the alt text honest.** In `index.html` and `assets/js/main.js` each
+photo has an `alt="..."` description. Update it to describe the real photo —
+it's what blind visitors hear, and Google reads it too.

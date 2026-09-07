@@ -30,12 +30,14 @@ else
   exit 1
 fi
 
-# name pattern -> width
+# name pattern -> width. The site displays every photo with a CSS
+# object-fit:cover crop, so this just caps file size — it doesn't need to
+# pre-crop to a specific aspect ratio.
 width_for() {
   case "$1" in
-    bg-*)     echo 2560 ;;
-    social*)  echo 1200 ;;
-    *)        echo 1600 ;;
+    shop-*)    echo 1200 ;;
+    social*)   echo 1200 ;;
+    *)         echo 1600 ;;
   esac
 }
 
@@ -65,4 +67,4 @@ fi
 
 echo
 echo "$count image(s) written to assets/img/"
-echo "Name them bg-1.jpg, grow-1.jpg, shot-1.jpg etc. — see assets/img/README.md"
+echo "Name them shop-1.jpg, grow-1.jpg, gifting.jpg etc. — see assets/img/README.md"

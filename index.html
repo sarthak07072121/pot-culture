@@ -25,23 +25,7 @@
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to content</a>
-
-<!-- ============================================================
-     THE LIVING BACKGROUND
-     One fixed layer behind the whole page. As you scroll into each
-     section — up or down — the background crossfades to that
-     section's photo. Drop files at assets/img/bg-1.jpg … bg-5.jpg
-     (see assets/img/README.md). Until then each layer renders as
-     designed artwork, so nothing looks broken.
-     ============================================================ -->
-<div class="bg-stage" id="bgStage" aria-hidden="true">
-  <div class="bg-layer ph ph-a on"><img data-photo src="assets/img/bg-1.jpg" alt=""></div>
-  <div class="bg-layer ph ph-b"><img data-photo src="assets/img/bg-2.jpg" alt=""></div>
-  <div class="bg-layer ph ph-c"><img data-photo src="assets/img/bg-3.jpg" alt=""></div>
-  <div class="bg-layer ph ph-d"><img data-photo src="assets/img/bg-4.jpg" alt=""></div>
-  <div class="bg-layer ph ph-e"><img data-photo src="assets/img/bg-5.jpg" alt=""></div>
-  <div class="bg-scrim"></div>
-</div>
+<div class="visually-hidden" id="cartAnnounce" aria-live="polite"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="header">
@@ -58,29 +42,33 @@
 
     <nav class="nav" id="nav" aria-label="Main">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
-      <a href="#shop">What we sell</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#gifting">Gifting</a>
+      <a href="#shop">Shop</a>
+      <a href="#gifting">Corporate gifting</a>
       <a href="#faq">FAQ</a>
       <a class="btn btn-primary btn-sm nav-cta" href="#contact">Enquire</a>
     </nav>
 
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header-actions">
+      <button type="button" class="cart-btn" id="cartButton" aria-haspopup="dialog" aria-controls="cartDrawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="cart-label">Cart</span>
+        <span class="visually-hidden">, </span>
+        <span id="cartCount">0</span>
+        <span class="visually-hidden"> items</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ================= CINEMATIC HERO =================
-       Three photos crossfade with a slow drift. Drop files at
-       assets/img/hero-1.jpg, hero-2.jpg, hero-3.jpg — see
-       assets/img/README.md for sizes. Until then you get artwork.
-       ================================================== -->
-  <section class="hero" id="home" data-bg="0">
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="home">
     <div class="wrap hero-inner">
-      <p class="eyebrow light">Corporate gifting, done properly</p>
+      <p class="eyebrow">Straight from the nursery</p>
       <!-- EDIT #3 — your headline -->
       <h1>Rare plants,<br><span class="grad">made for gifting</span></h1>
       <p class="lede">
@@ -91,65 +79,40 @@
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="#gifting">Get gifting rates</a>
-        <a class="btn btn-glass btn-lg" href="#shop">Shop single plants</a>
+        <a class="btn btn-ghost btn-lg" href="#shop">Shop plants</a>
       </div>
+      <!-- Trust bar — config'd in assets/js/main.js as TRUST_BAR, so it's
+           one array to edit rather than markup to hunt through. Only
+           claims that hold true regardless of unconfirmed specifics are
+           included by default; see the comment above TRUST_BAR. -->
+      <div class="trust-bar" id="trustBar"></div>
     </div>
-
-    <a class="scroll-cue" href="#shop" aria-label="Scroll down"><span></span></a>
   </section>
 
-  <!-- ================= MARQUEE ================= -->
-  <!-- EDIT #4 — swap these for the varieties you actually stock. Duplicated
-       once in the markup so the scroll loop has no visible seam. -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Monstera</span><span class="dot">•</span>
-      <span>Snake Plant</span><span class="dot">•</span>
-      <span>ZZ Plant</span><span class="dot">•</span>
-      <span>Philodendron</span><span class="dot">•</span>
-      <span>Anthurium</span><span class="dot">•</span>
-      <span>Calathea</span><span class="dot">•</span>
-      <span>Pothos</span><span class="dot">•</span>
-      <span>Fiddle Leaf Fig</span><span class="dot">•</span>
-      <span>Monstera</span><span class="dot">•</span>
-      <span>Snake Plant</span><span class="dot">•</span>
-      <span>ZZ Plant</span><span class="dot">•</span>
-      <span>Philodendron</span><span class="dot">•</span>
-      <span>Anthurium</span><span class="dot">•</span>
-      <span>Calathea</span><span class="dot">•</span>
-      <span>Pothos</span><span class="dot">•</span>
-      <span>Fiddle Leaf Fig</span><span class="dot">•</span>
-    </div>
-  </div>
-
-  <!-- ================= WHAT WE SELL =================
-       A stats strip (varieties / pots in stock / corporate orders /
-       cities) used to sit here. Removed rather than shown with empty
-       "—" placeholders — see README.md "Bringing back the stats strip"
-       for the exact snippet once you have real numbers. -->
-  <section class="section" id="shop" data-bg="1">
+  <!-- ================= WHAT WE SELL (overview) ================= -->
+  <section class="section" id="overview">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">From the nursery</p>
+        <p class="eyebrow">What we sell</p>
         <h2>Exotic plants, potted plants, and pots to match</h2>
         <p class="sub">Sourced and stocked by us — buy a single plant, or as many as your team needs.</p>
       </div>
 
-      <!-- EDIT #5 — the three things you most want to sell. Photos go at
+      <!-- EDIT #4 — the three things you most want to sell. Photos go at
            assets/img/grow-1.jpg, grow-2.jpg, grow-3.jpg -->
-      <div class="grid grid-3 editorial">
-        <article class="feature reveal">
-          <div class="ph ph-a frame"><img data-photo src="assets/img/grow-1.jpg" alt="Exotic plants from the nursery"></div>
+      <div class="grid grid-3">
+        <article class="card feature reveal">
+          <div class="ph ph-a frame"><img data-photo loading="lazy" src="assets/img/grow-1.jpg" alt="Exotic plants from the nursery"></div>
           <h3>Exotic &amp; rare plants</h3>
           <p>Sourced, potted and checked by us before it ships — as a single plant, or in bulk for gifting.</p>
         </article>
-        <article class="feature reveal">
-          <div class="ph ph-b frame"><img data-photo src="assets/img/grow-2.jpg" alt="Potted plants ready to gift or display"></div>
+        <article class="card feature reveal">
+          <div class="ph ph-b frame"><img data-photo loading="lazy" src="assets/img/grow-2.jpg" alt="Potted plants ready to gift or display"></div>
           <h3>Potted plants</h3>
           <p>Ready-potted and ready to hand over — for a desk, a doorstep, or a client's office.</p>
         </article>
-        <article class="feature reveal">
-          <div class="ph ph-c frame"><img data-photo src="assets/img/grow-3.jpg" alt="Pots ready in stock or made to order"></div>
+        <article class="card feature reveal">
+          <div class="ph ph-c frame"><img data-photo loading="lazy" src="assets/img/grow-3.jpg" alt="Pots ready in stock or made to order"></div>
           <h3>Pots</h3>
           <p>Plenty ready in stock, or tell us the size and finish and we'll make it to order.</p>
         </article>
@@ -157,52 +120,37 @@
     </div>
   </section>
 
-  <!-- ================= GALLERY ================= -->
-  <section class="section" id="gallery" data-bg="2">
+  <!-- ================= SHOP ================= -->
+  <section class="section section-alt" id="shop">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow">The work</p>
-        <h2>Plants and pots, ready to go</h2>
-        <p class="sub">Click any photo to open it full size.</p>
+        <p class="eyebrow">Top 5 exotic plants</p>
+        <h2>Ready to ship this week</h2>
+        <p class="sub">Add to cart, then check out on WhatsApp — no account, no payment page.</p>
       </div>
 
-      <!-- EDIT #6 — your gallery. Photos at assets/img/shot-1.jpg … shot-6.jpg
-           Write a real caption for each — captions show in the lightbox. -->
-      <div class="gallery">
-        <figure class="shot ph ph-a tall reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-1.jpg" alt="A pot ready in stock">
-          <figcaption>Ready in stock</figcaption>
-        </figure>
-        <figure class="shot ph ph-b reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-2.jpg" alt="Exotic plant close up">
-          <figcaption>Variegated monstera</figcaption>
-        </figure>
-        <figure class="shot ph ph-c reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-3.jpg" alt="Plants at the nursery">
-          <figcaption>At the nursery</figcaption>
-        </figure>
-        <figure class="shot ph ph-b wide reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-4.jpg" alt="A corporate gifting set">
-          <figcaption>Gifting set, branded tags</figcaption>
-        </figure>
-        <figure class="shot ph ph-c reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-5.jpg" alt="Plants on a windowsill">
-          <figcaption>Morning light, west window</figcaption>
-        </figure>
-        <figure class="shot ph ph-a reveal" tabindex="0" role="button" aria-label="Open photo">
-          <img data-photo src="assets/img/shot-6.jpg" alt="A pot made to order">
-          <figcaption>Made to order</figcaption>
-        </figure>
-      </div>
+      <!-- Rendered from the PRODUCTS array in assets/js/main.js — see
+           EDIT comments there for prices, stock, and product copy. -->
+      <div class="shop-grid" id="shopGrid" aria-live="polite"></div>
+
+      <a class="browse-all" href="#contact">Looking for something else? Browse all plants →</a>
     </div>
   </section>
 
   <!-- ================= GIFTING (parallax split) ================= -->
-  <section class="section split" id="gifting" data-bg="3">
+  <section class="section split" id="gifting">
     <div class="wrap split-inner">
       <div class="split-media reveal">
         <div class="ph ph-b frame tall-media">
-          <img data-photo data-parallax="34" src="assets/img/gifting.jpg" alt="Branded plant gifts packed for a corporate order">
+          <img data-photo loading="lazy" src="assets/img/gifting.jpg" alt="Branded plant gifts packed for a corporate order">
+        </div>
+        <!-- Proof imagery — packed order / branded tags / nursery shot.
+             Same graceful-degrade photo system as the rest of the site:
+             designed artwork until you drop real files in at these paths. -->
+        <div class="proof-strip">
+          <div class="ph ph-c frame"><img data-photo loading="lazy" src="assets/img/gifting-packed.jpg" alt="A corporate order packed for delivery"></div>
+          <div class="ph ph-a frame"><img data-photo loading="lazy" src="assets/img/gifting-tags.jpg" alt="Branded gift tags on an order"></div>
+          <div class="ph ph-d frame"><img data-photo loading="lazy" src="assets/img/gifting-nursery.jpg" alt="Plants at the nursery, ready to pot"></div>
         </div>
       </div>
       <div class="split-copy reveal">
@@ -213,60 +161,58 @@
           A living plant outlasts a mug or a diary — one for a new hire,
           or a thousand for an event.
         </p>
-        <!-- EDIT #7a — delete this line if ESG reporting genuinely isn't
-             a reason your corporate buyers choose you. -->
-        <p class="sub esg-line">A living gift instead of another plastic mug also does something for your buyer: it's easier to justify in a sustainable-procurement or CSR report than most gifting.</p>
+        <p class="sub">A living gift instead of another plastic mug also does something for your buyer: it's easier to justify in a sustainable-procurement or CSR report than most gifting.</p>
 
-        <!-- EDIT #7 — YOUR PRICES. These read ₹___ on purpose: a blank is
-             honest, an invented price is not. Fill them in, or delete the
-             .tier-price lines so people simply enquire. -->
-        <ul class="tiers">
-          <li>
-            <div><b>Desk gift</b><span>Single exotic plant, pot, gift box, care card</span></div>
-            <em class="tier-price">₹___</em>
-          </li>
-          <li class="best">
-            <div><b>Signature</b><span>Larger or rarer plant, your logo on the pot</span></div>
-            <em class="tier-price">₹___</em>
-          </li>
-          <li>
-            <div><b>Bespoke</b><span>Custom pots, curated plant mix, event logistics</span></div>
-            <em class="tier-price">Let's talk</em>
-          </li>
-        </ul>
-
-        <!-- EDIT #7b — YOUR REAL LEAD TIMES. Same rule as the prices above:
-             a blank "___" is honest, a guessed number is not. This table is
-             what a corporate buyer checks before they even open the enquiry
-             form — worth filling in first. -->
-        <div class="moq-wrap">
-          <table class="moq-table">
-            <caption>Quantity &amp; lead time</caption>
-            <thead>
-              <tr><th scope="col">Quantity</th><th scope="col">Dispatch in</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">1–10</th><td>___</td></tr>
-              <tr><th scope="row">50</th><td>___</td></tr>
-              <tr><th scope="row">200</th><td>___</td></tr>
-              <tr><th scope="row">500+</th><td>___</td></tr>
-            </tbody>
-          </table>
-          <p class="moq-note">Custom pots: add ___. Branded pots: add ___.</p>
+        <div class="will-alive">
+          <h4>Will they keep it alive?</h4>
+          <p>
+            That's the real risk with a living gift, so bulk and corporate
+            orders only use hardy, low-maintenance species — never anything
+            delicate. Every box ships with a printed care card and a QR
+            code to our <a href="care.html">care guide</a>, and recipients
+            can message us afterwards if a plant looks unhappy.
+          </p>
         </div>
 
-        <p class="fineprint">
-          <!-- EDIT #8 — your real terms -->
-          Prices exclude GST and delivery. Damaged on arrival, or dies in the
-          first ___ days? Replaced free.
-        </p>
-        <a class="btn btn-primary btn-lg" href="#contact">Request gifting rates</a>
+        <!-- EDIT #5 — YOUR GIFTING PRICES AND LEAD TIMES.
+             Per the site's own rule: a real value or nothing at all —
+             never a fabricated number. The table below uses honest
+             "confirmed on enquiry" wording for price bands rather than
+             invented figures. Replace those cells once you have real
+             numbers; see README.md. Lead-time column is a true relative
+             ordering (larger runs take longer), not specific day counts. -->
+        <div class="gift-table-wrap">
+          <table class="gift-table">
+            <caption>Quantity, lead time &amp; price band</caption>
+            <thead>
+              <tr><th scope="col">Quantity</th><th scope="col">Lead time</th><th scope="col">Price band</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">1–10</th><td>Fastest</td><td>Confirmed on enquiry</td></tr>
+              <tr><th scope="row">25–99</th><td>Fast</td><td>Confirmed on enquiry</td></tr>
+              <tr><th scope="row">100–499</th><td>Standard</td><td>Confirmed on enquiry</td></tr>
+              <tr><th scope="row">500+</th><td>Extended</td><td>Confirmed on enquiry</td></tr>
+            </tbody>
+          </table>
+          <p class="cart-fineprint" style="margin-top:10px">Branding — logo on the pot, a tag, or the packaging — available at every tier, confirmed at quote. Prices exclude GST and delivery.</p>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#contact">Request gifting rates</a>
+          <!-- EDIT #6 — link this to a real PDF once you've reviewed
+               assets/pot-culture-gifting.pdf (generated from the same
+               product data as the shop — see README.md). -->
+          <a class="btn btn-ghost btn-lg pdf-link" href="assets/pot-culture-gifting.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download gifting catalogue (PDF)
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ================= HOW IT WORKS ================= -->
-  <section class="section" id="how" data-bg="3">
+  <section class="section" id="how">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Ordering</p>
@@ -274,17 +220,17 @@
         <p class="sub">The same for one plant or five hundred.</p>
       </div>
       <ol class="steps">
-        <li class="step reveal">
+        <li class="step card reveal">
           <span class="step-num">1</span>
           <h3>Tell us what you need</h3>
           <p>Quantity, budget, and whether it's for a home or a team. We'll suggest plants that suit the light and the occasion.</p>
         </li>
-        <li class="step reveal">
+        <li class="step card reveal">
           <span class="step-num">2</span>
           <h3>We pot it up</h3>
           <p>You approve the plant and pot pairing — and the branding, for corporate orders — before anything is made.</p>
         </li>
-        <li class="step reveal">
+        <li class="step card reveal">
           <span class="step-num">3</span>
           <h3>Delivered, alive</h3>
           <p>Packed to survive the journey, with a care card. Message us any time a plant looks unhappy.</p>
@@ -294,19 +240,21 @@
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="section" id="faq" data-bg="4">
+  <section class="section section-alt" id="faq">
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
         <p class="eyebrow">Questions</p>
         <h2>Before you order</h2>
       </div>
-      <!-- EDIT #9 — every ___ below is a real fact only you have. Fill
-           each one in before this goes in front of a real customer —
-           see the Tier-1 checklist in README.md. -->
+      <!-- EDIT #7 — two answers below (delivery, damage/replacement) use
+           honest process language rather than a fake specific, because
+           the real numbers aren't confirmed yet. Replace them with your
+           actual delivery area/cost/timeline and replacement window once
+           you have them — see the TODO comment above each one. -->
       <div class="faq reveal">
         <details>
           <summary>Can I just buy one plant?</summary>
-          <p>Yes — single exotic plants are sold individually, not only in bulk. Bulk is for corporate gifting; if you just want one plant for yourself, that's a normal order.</p>
+          <p>Yes — single exotic plants are sold individually, not only in bulk. Bulk is for corporate gifting; if you just want one plant for yourself, that's a normal order (see the shop above).</p>
         </details>
         <details>
           <summary>Do you sell pots on their own?</summary>
@@ -314,11 +262,16 @@
         </details>
         <details>
           <summary>Do you deliver, and where?</summary>
-          <p>We currently deliver to ___. Delivery costs ___ and takes ___.</p>
+          <!-- TODO: once your delivery area, cost and typical timeline are
+               confirmed, replace this with the real specifics — a buyer
+               will want the actual answer before they enquire. -->
+          <p>Tell us your city in the enquiry form and we'll confirm delivery area, cost, and timeline straight away.</p>
         </details>
         <details>
-          <summary>What if the plant arrives damaged, or dies soon after?</summary>
-          <p>Damaged on arrival, or dies within the first ___ days? Replaced free, no argument.</p>
+          <summary>What if the plant arrives damaged?</summary>
+          <!-- TODO: if you want to commit to a specific replacement
+               window (e.g. "within 7 days"), add the real number here. -->
+          <p>Damaged on arrival, or arrives in poor health? Replaced free — message us with a photo and we'll sort it.</p>
         </details>
         <details>
           <summary>Won't a gifted plant just die and leave our logo on a dead plant?</summary>
@@ -334,7 +287,7 @@
         </details>
         <details>
           <summary>How many can you make for a corporate order?</summary>
-          <p>From a single desk gift to a full rollout — see quantities and dispatch times in the table above, or just tell us the number in the enquiry form.</p>
+          <p>From a single desk gift to a full rollout — see the quantity table in the gifting section above, or just tell us the number in the enquiry form.</p>
         </details>
         <details>
           <summary>Do you provide GST invoices, or work against a PO?</summary>
@@ -345,7 +298,7 @@
   </section>
 
   <!-- ================= CONTACT ================= -->
-  <section class="section contact" id="contact" data-bg="4">
+  <section class="section contact" id="contact">
     <div class="wrap wrap-narrow">
       <div class="section-head reveal">
         <p class="eyebrow">Get in touch</p>
@@ -367,7 +320,7 @@
           <label>City<input type="text" name="city" required autocomplete="address-level2" placeholder="Where you need it delivered"></label>
         </div>
         <div class="row">
-          <label>Company / organisation <span class="opt">if applicable</span><input type="text" name="org" autocomplete="organization" placeholder="For corporate orders"></label>
+          <label>Company name <span class="opt">if applicable</span><input type="text" name="org" autocomplete="organization" placeholder="For corporate orders"></label>
           <label>What are you looking for?
             <select name="interest">
               <option>Single exotic plant</option>
@@ -384,11 +337,10 @@
         </div>
         <div class="row">
           <label>Budget per unit <span class="opt">optional</span><input type="text" name="budget" placeholder="e.g. ₹300–500"></label>
-          <label>Branding needed?
+          <label>Branding required?
             <select name="branding">
-              <option>Not needed</option>
-              <option>Logo on the pot</option>
-              <option>Logo on a tag / packaging</option>
+              <option>No</option>
+              <option>Yes</option>
               <option>Not sure yet</option>
             </select>
           </label>
@@ -409,16 +361,11 @@
   </section>
 </main>
 
-<!-- Sticky mobile enquiry bar — appears once you've scrolled past the hero,
-     hides once the real contact form is on screen. Gives phone visitors a
-     one-thumb way to reach the form at all times. -->
-<a class="mobile-cta" id="mobileCta" href="#contact">Enquire now</a>
-
-<!-- WhatsApp floating button — this one number matters more than any other
-     line on this page. EDIT #11 — replace 91XXXXXXXXXX with your real
-     WhatsApp number (country code, no + or spaces, e.g. 919876543210). The
-     button works and looks normal with the placeholder still in it, but it
-     opens WhatsApp to nobody until you swap in a real number. -->
+<!-- WhatsApp floating button — distinct from the cart button. This
+     number matters more than any other line on this page. EDIT #8 —
+     replace 91XXXXXXXXXX with your real WhatsApp number in
+     assets/js/main.js (WHATSAPP_NUMBER) — used here and by cart
+     checkout. -->
 <a class="whatsapp-fab" id="whatsappFab"
    href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%27m%20looking%20for%20corporate%20gifting"
    target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -427,23 +374,29 @@
   </svg>
 </a>
 
-<!-- A small label that follows the cursor over the gallery. Desktop only —
-     hidden automatically on touch devices. -->
-<div class="cursor-chip" id="cursorChip" aria-hidden="true">View</div>
+<!-- Toast — small non-blocking add-to-cart confirmation -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- ================= LIGHTBOX ================= -->
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lb-btn lb-close" id="lightboxClose" aria-label="Close">&times;</button>
-  <button class="lb-btn lb-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
-  <button class="lb-btn lb-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
-  <figure class="lb-figure">
-    <img id="lightboxImg" alt="" hidden>
-    <figcaption>
-      <span id="lightboxCap"></span>
-      <span class="lb-count" id="lightboxCount"></span>
-    </figcaption>
-  </figure>
-</div>
+<!-- ================= CART DRAWER ================= -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your cart" aria-hidden="true">
+  <div class="cart-head">
+    <h2>Your cart</h2>
+    <button type="button" class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-body">
+    <p class="cart-empty" id="cartEmpty">Your cart is empty. Add a plant from the shop to get started.</p>
+    <ul class="cart-items" id="cartItems"></ul>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-subtotal-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <p class="cart-fineprint">Prices exclude GST and delivery. Checkout opens WhatsApp with your order pre-filled — nothing is charged on this site.</p>
+    <div class="cart-checkout-actions">
+      <a class="btn btn-primary btn-lg btn-block" id="cartWhatsapp" href="#" target="_blank" rel="noopener">Checkout on WhatsApp</a>
+      <a class="cart-secondary-link" id="cartEmailLink" href="#">Email this order instead</a>
+    </div>
+  </div>
+</aside>
 
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer">
@@ -463,21 +416,22 @@
     <nav class="footer-links" aria-label="Footer">
       <div>
         <h4>Explore</h4>
-        <a href="#shop">What we sell</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#gifting">Gifting</a>
+        <a href="#shop">Shop</a>
+        <a href="#gifting">Corporate gifting</a>
         <a href="care.html">Plant care guide</a>
       </div>
       <div>
-        <h4>Contact</h4>
-        <!-- EDIT #12 — your real email, phone and city. These reach nobody. -->
-        <a href="mailto:hello@example.com">hello@example.com</a>
-        <a href="tel:+910000000000">+91 00000 00000</a>
-        <span>Your city, India</span>
+        <h4>Get in touch</h4>
+        <a href="#contact">Enquiry form</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <!-- EDIT #9 — your real email, phone and city belong here once
+             confirmed. Nothing is shown in their place on purpose — a
+             fake email/phone/city visible to a visitor is worse than
+             omitting them; see README.md "CRITICAL: remove placeholders". -->
       </div>
     </nav>
   </div>
-  <div class="wrap footer-bottom"><p>&copy; <span id="year"></span> Pot Culture. All rights reserved.</p></div>
+  <div class="wrap footer-bottom"><p>&copy; <span data-year></span> Pot Culture. All rights reserved.</p></div>
 </footer>
 
 <script src="assets/js/main.js"></script>
