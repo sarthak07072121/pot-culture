@@ -26,9 +26,9 @@ open-space shots work best.
 
 | File | Card |
 |------|------|
-| `grow-1.jpg` | Indoor plants |
-| `grow-2.jpg` | Exotic & rare |
-| `grow-3.jpg` | Handmade pots |
+| `grow-1.jpg` | Exotic & rare plants |
+| `grow-2.jpg` | Potted plants |
+| `grow-3.jpg` | Pots |
 
 ### The gallery
 
