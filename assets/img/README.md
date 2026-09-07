@@ -17,7 +17,7 @@ open-space shots work best.
 | File | Appears behind |
 |------|----------------|
 | `bg-1.jpg` | the opening screen |
-| `bg-2.jpg` | "What we grow" |
+| `bg-2.jpg` | "What we sell" |
 | `bg-3.jpg` | the gallery |
 | `bg-4.jpg` | corporate gifting + how it works |
 | `bg-5.jpg` | FAQ + contact |
