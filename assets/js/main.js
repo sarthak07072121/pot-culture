@@ -1,7 +1,20 @@
 /* ============================================================
-   EDIT #10 — WHERE ENQUIRIES GO.
-   ============================================================ */
-var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
+   EDIT #10 — WHERE ENQUIRIES GO. This is Tier-1, do this first.
+   ============================================================
+   Right now the form falls back to mailto: — it opens the visitor's own
+   email app with the enquiry pre-written. That works with zero setup,
+   but the visitor has to press send themselves, and it does nothing if
+   they don't have an email app configured (common on a work laptop).
+
+   To have enquiries land straight in your inbox instead:
+     1. Go to https://formspree.io and sign up (free tier is enough)
+     2. Create a form, copy the endpoint URL it gives you — looks like
+        https://formspree.io/f/abcwxyz
+     3. Paste it into FORMSPREE_ENDPOINT below, between the quotes
+   That's it — nothing else in this file needs to change. Leave it blank
+   and the mailto: fallback keeps working exactly as before. */
+var FORMSPREE_ENDPOINT = "";               // <-- paste your Formspree URL here
+var CONTACT_EMAIL = "hello@example.com";   // <-- your real email (used by the mailto: fallback)
 
 (function () {
   "use strict";
@@ -332,52 +345,99 @@ var CONTACT_EMAIL = "hello@example.com";   // <-- your real email
   var note = $("#formNote");
   var say = function (msg, kind) { note.textContent = msg; note.className = "form-note " + (kind || ""); };
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    if (form.company.value) return;                // honeypot
-
-    var name = form.name.value.trim();
-    var email = form.email.value.trim();
-    var phone = form.phone.value.trim();
-    var interest = form.interest.value;
-    var quantity = form.quantity.value.trim();
-    var deadline = form.deadline.value.trim();
-    var message = form.message.value.trim();
-
-    [form.name, form.email, form.message].forEach(function (f) { f.removeAttribute("aria-invalid"); });
-
-    var bad = null;
-    if (!name) bad = form.name;
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) bad = form.email;
-    else if (message.length < 10) bad = form.message;
-
-    if (bad) {
-      bad.setAttribute("aria-invalid", "true");
-      bad.focus();
-      say("Please fill in your name, a valid email, and a short message.", "err");
-      return;
-    }
-
-    var body =
-      "Name: " + name + "\n" +
-      "Email: " + email + "\n" +
-      "Phone: " + (phone || "not given") + "\n" +
-      "Looking for: " + interest + "\n" +
-      "Quantity: " + (quantity || "not given") + "\n" +
-      "Needed by: " + (deadline || "not given") + "\n\n" +
-      message;
-
-    window.location.href =
-      "mailto:" + CONTACT_EMAIL +
-      "?subject=" + encodeURIComponent(interest + " enquiry from " + name) +
-      "&body=" + encodeURIComponent(body);
-
-    say("Opening your email app — press send there to finish.", "ok");
-
+  var markSent = function () {
     var sendBtn = $("button[type=submit]", form);
     if (sendBtn) {
       sendBtn.classList.add("sent");
       setTimeout(function () { sendBtn.classList.remove("sent"); }, 2400);
     }
+  };
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (form.company.value) return;                // honeypot — real field is "org", not "company"
+
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    var phone = form.phone.value.trim();
+    var city = form.city.value.trim();
+    var org = form.org.value.trim();
+    var interest = form.interest.value;
+    var quantity = form.quantity.value.trim();
+    var deadline = form.deadline.value.trim();
+    var budget = form.budget.value.trim();
+    var branding = form.branding.value;
+    var message = form.message.value.trim();
+
+    [form.name, form.email, form.city, form.message].forEach(function (f) { f.removeAttribute("aria-invalid"); });
+
+    var bad = null;
+    if (!name) bad = form.name;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) bad = form.email;
+    else if (!city) bad = form.city;
+    else if (message.length < 10) bad = form.message;
+
+    if (bad) {
+      bad.setAttribute("aria-invalid", "true");
+      bad.focus();
+      say("Please fill in your name, city, a valid email, and a short message.", "err");
+      return;
+    }
+
+    var subject = interest + " enquiry from " + name + (org ? " (" + org + ")" : "");
+
+    var mailtoFallback = function () {
+      var body =
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n" +
+        "Phone: " + (phone || "not given") + "\n" +
+        "City: " + city + "\n" +
+        "Company / organisation: " + (org || "not given") + "\n" +
+        "Looking for: " + interest + "\n" +
+        "Quantity: " + (quantity || "not given") + "\n" +
+        "Needed by: " + (deadline || "not given") + "\n" +
+        "Budget per unit: " + (budget || "not given") + "\n" +
+        "Branding needed: " + branding + "\n\n" +
+        message;
+
+      window.location.href =
+        "mailto:" + CONTACT_EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      say("Opening your email app — press send there to finish.", "ok");
+      markSent();
+    };
+
+    var isConfigured = FORMSPREE_ENDPOINT && /^https:\/\/formspree\.io\/f\/\w+$/.test(FORMSPREE_ENDPOINT.trim());
+
+    if (!isConfigured) {
+      mailtoFallback();
+      return;
+    }
+
+    var sendBtn = $("button[type=submit]", form);
+    if (sendBtn) sendBtn.disabled = true;
+    say("Sending…", "");
+
+    fetch(FORMSPREE_ENDPOINT.trim(), {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: new FormData(form)
+    }).then(function (res) {
+      if (sendBtn) sendBtn.disabled = false;
+      if (res.ok) {
+        say("Thanks — we'll reply within one working day.", "ok");
+        markSent();
+        form.reset();
+      } else {
+        say("That didn't go through — please try again, or use WhatsApp / email below.", "err");
+      }
+    }).catch(function () {
+      // No network, or Formspree unreachable — mailto still works offline-ish
+      // (it just opens the local mail app), so fall back rather than fail silently.
+      if (sendBtn) sendBtn.disabled = false;
+      mailtoFallback();
+    });
   });
 })();

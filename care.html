@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plant care guide — Pot Culture</title>
+<meta name="description" content="How to look after the plant you received from Pot Culture — watering, light, and what to do if something looks wrong.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪴</text></svg>">
+<style>
+  /* This page is deliberately simple and self-contained — no hero, no
+     scroll background, no lightbox — so it opens fast for someone
+     scanning a QR code on their phone with a half-dead plant in hand. */
+  body{opacity:1;background:var(--bg)}
+  .care-header{border-bottom:1px solid var(--line);padding-block:20px}
+  .care-hero{padding:clamp(40px,7vw,72px) 0 8px;text-align:center}
+  .care-hero .eyebrow{justify-content:center}
+  .care-hero h1{max-width:16em;margin-inline:auto}
+  .plant-grid{display:grid;gap:20px;grid-template-columns:repeat(3,1fr);margin:36px 0}
+  .plant-card{padding:24px}
+  .plant-card h3{margin-bottom:.3em}
+  .plant-card .diff{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);background:rgba(47,125,95,.09);padding:.25em .7em;border-radius:999px;margin-bottom:.9em}
+  .plant-card dl{display:grid;grid-template-columns:auto 1fr;gap:.3em .8em;font-size:.92rem;margin:0}
+  .plant-card dt{color:var(--ink-soft);font-weight:600}
+  .plant-card dd{margin:0}
+  .tips{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin:28px 0}
+  .tip{padding:20px 22px}
+  .tip h4{margin:0 0 .3em;font-size:1rem}
+  .tip p{margin:0;font-size:.92rem;color:var(--ink-soft)}
+  .help-band{text-align:center;padding:40px 0;margin-top:12px}
+  @media (max-width:800px){ .plant-grid,.tips{grid-template-columns:1fr} }
+</style>
+</head>
+<body class="ready">
+
+<header class="care-header">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21v-7"/><path d="M12 14c0-4 2.6-6.6 6.5-7-.4 4-3 6.6-6.5 7Z"/>
+          <path d="M12 16c0-3.3-2.2-5.5-5.5-5.9.4 3.4 2.6 5.6 5.5 5.9Z"/>
+        </svg>
+      </span>
+      <span class="brand-name">Pot Culture</span>
+    </a>
+    <a class="btn btn-ghost btn-sm" href="index.html">Back to the site</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="care-hero wrap wrap-narrow">
+    <p class="eyebrow">Care guide</p>
+    <h1>Keeping it alive is easier than it looks</h1>
+    <p class="lede" style="color:var(--ink-soft);max-width:34em;margin-inline:auto">
+      This is the page the QR code on your care card points to. Find your
+      plant below, or skip to the general rules — most plant deaths come
+      from one of the same three mistakes.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <!-- EDIT #13 — this page ships with the three hardy plants used for bulk
+           and corporate gifting (see the FAQ on the main site). If you
+           stock others, or these aren't the ones you actually send, swap
+           the cards below for your real list. -->
+      <div class="plant-grid">
+        <article class="card plant-card reveal in">
+          <span class="diff">Very easy</span>
+          <h3>ZZ Plant</h3>
+          <dl>
+            <dt>Light</dt><dd>Low to bright, indirect</dd>
+            <dt>Water</dt><dd>Every 2–3 weeks</dd>
+            <dt>Mistake to avoid</dt><dd>Watering too often — it stores water in its roots</dd>
+          </dl>
+        </article>
+        <article class="card plant-card reveal in">
+          <span class="diff">Very easy</span>
+          <h3>Snake Plant</h3>
+          <dl>
+            <dt>Light</dt><dd>Low to bright, indirect</dd>
+            <dt>Water</dt><dd>Every 2–3 weeks</dd>
+            <dt>Mistake to avoid</dt><dd>Leaving it in a dish with standing water</dd>
+          </dl>
+        </article>
+        <article class="card plant-card reveal in">
+          <span class="diff">Easy</span>
+          <h3>Pothos</h3>
+          <dl>
+            <dt>Light</dt><dd>Low to bright, indirect</dd>
+            <dt>Water</dt><dd>Weekly, when topsoil is dry</dd>
+            <dt>Mistake to avoid</dt><dd>Direct hot afternoon sun — leaves scorch</dd>
+          </dl>
+        </article>
+      </div>
+
+      <div class="section-head reveal in" style="margin-top:8px">
+        <p class="eyebrow">General rules</p>
+        <h2>If you only remember three things</h2>
+      </div>
+
+      <div class="tips">
+        <div class="card tip reveal in">
+          <h4>When in doubt, don't water</h4>
+          <p>Far more houseplants are killed by overwatering than underwatering. If the top inch of soil is still damp, wait.</p>
+        </div>
+        <div class="card tip reveal in">
+          <h4>Yellow leaves usually mean too much water</h4>
+          <p>It's the most common distress signal, and the instinct is to water more — do the opposite and let it dry out.</p>
+        </div>
+        <div class="card tip reveal in">
+          <h4>Check the pot has drainage</h4>
+          <p>Roots that sit in water rot. If your pot has no drainage hole, water less and check the base isn't pooling.</p>
+        </div>
+        <div class="card tip reveal in">
+          <h4>Indirect light beats a dark corner or a hot windowsill</h4>
+          <p>Most gifting plants want bright light without direct sun — a metre or two back from a window is usually right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="help-band">
+    <div class="wrap wrap-narrow">
+      <h2 style="margin-bottom:.4em">Still looks unhappy?</h2>
+      <p style="color:var(--ink-soft);margin-bottom:1.6em">
+        Message us with a photo and we'll tell you what's going on —
+        this is covered whether you bought it yourself or received it
+        as a gift.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <!-- Same number as EDIT #11 in index.html's floating button -->
+        <a class="btn btn-primary btn-lg" href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20my%20plant%20from%20Pot%20Culture%20isn%27t%20doing%20well" target="_blank" rel="noopener">Message us on WhatsApp</a>
+        <a class="btn btn-ghost btn-lg" href="index.html#contact">Use the contact form</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" style="padding-top:32px">
+  <div class="wrap footer-bottom"><p>&copy; <span id="year"></span> Pot Culture.</p></div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
