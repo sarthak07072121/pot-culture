@@ -10,7 +10,7 @@
    automatically: sign up free at https://formspree.io, create a form,
    and paste the endpoint URL here. See README.md for the full steps. */
 var FORMSPREE_ENDPOINT = "";                 // TODO: paste your Formspree endpoint URL
-var CONTACT_EMAIL = "hello@example.com";     // TODO: your real email (used by the mailto: fallback)
+var CONTACT_EMAIL = "hello@potexotica.in";   // Pot Exotica contact email (used by the mailto: fallback)
 
 /* EDIT — used by both the floating WhatsApp button and cart checkout.
    Format: country code + number, digits only, no + or spaces. */
@@ -452,14 +452,14 @@ var PRODUCTS = [
     }).filter(Boolean);
 
     var body =
-      "Hi Pot Culture, I'd like to order:\n" +
+      "Hi Pot Exotica, I'd like to order:\n" +
       lines.join("\n") +
       "\nSubtotal: " + money(cartSubtotal()) +
       "\nName: ___  Delivery pincode: ___";
 
     return {
       whatsapp: "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(body),
-      mailto: "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Order from Pot Culture website") + "&body=" + encodeURIComponent(body)
+      mailto: "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Order from Pot Exotica website") + "&body=" + encodeURIComponent(body)
     };
   };
 

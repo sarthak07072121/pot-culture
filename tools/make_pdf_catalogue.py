@@ -64,7 +64,7 @@ def wrapped(c, text, x, y, width, font="Helvetica", size=10, leading=14, color=I
 def footer(c, page_num):
     c.setFont("Helvetica", 8)
     c.setFillColor(INK_SOFT)
-    c.drawString(MARGIN, 12 * mm, "Pot Culture  --  Corporate Gifting Catalogue")
+    c.drawString(MARGIN, 12 * mm, "Pot Exotica  --  Corporate Gifting Catalogue")
     c.drawRightString(W - MARGIN, 12 * mm, str(page_num))
 
 
@@ -88,7 +88,7 @@ c.setFont("Helvetica-Bold", 9)
 c.drawCentredString(MARGIN + 4 * mm, y - 4.6 * mm, "PC")
 c.setFillColor(INK)
 c.setFont("Helvetica-Bold", 20)
-c.drawString(MARGIN + 12 * mm, y - 5.5 * mm, "Pot Culture")
+c.drawString(MARGIN + 12 * mm, y - 5.5 * mm, "Pot Exotica")
 c.setFont("Helvetica", 10)
 c.setFillColor(INK_SOFT)
 c.drawRightString(W - MARGIN, y - 5.5 * mm, "Corporate Gifting Catalogue")
