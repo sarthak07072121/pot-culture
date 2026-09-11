@@ -1,6 +1,6 @@
-# Pot Culture — website
+# Pot Exotica — website
 
-A one-page site for Pot Culture: exotic plants sourced from a trusted
+A one-page site for Pot Exotica: exotic plants sourced from a trusted
 nursery (single or bulk), a working shop with a WhatsApp-checkout cart,
 pots ready-made or made to order, and corporate gifting as the speciality.
 Plain HTML + CSS + vanilla JS — no framework, no build step, no
