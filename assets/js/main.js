@@ -654,4 +654,23 @@ var PRODUCTS = [
       });
     });
   }
+
+  // Scroll animations: fade-up on scroll for each section
+  if (typeof IntersectionObserver !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !entry.target.classList.contains('section-animated')) {
+          entry.target.classList.add('in-view');
+          entry.target.classList.add('section-animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    var sections = document.querySelectorAll('.section');
+    sections.forEach(function (section) {
+      section.classList.add('section-reveal');
+      observer.observe(section);
+    });
+  }
 })();
