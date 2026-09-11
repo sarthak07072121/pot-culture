@@ -14,7 +14,7 @@ var CONTACT_EMAIL = "hello@potexotica.in";   // Pot Exotica contact email (used 
 
 /* EDIT — used by both the floating WhatsApp button and cart checkout.
    Format: country code + number, digits only, no + or spaces. */
-var WHATSAPP_NUMBER = "91XXXXXXXXXX";        // TODO: your real WhatsApp number
+var WHATSAPP_NUMBER = "918669184682";        // TODO: your real WhatsApp number
 
 /* EDIT — the trust bar under the hero. Only claims that are true
    regardless of unconfirmed specifics are included by default (no
